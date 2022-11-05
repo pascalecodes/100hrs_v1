@@ -1,7 +1,7 @@
 {
-  "name": "binary-upload-boom",
+  "name": "memwa-stories",
   "version": "1.0.0",
-  "description": "100Devs Social Network",
+  "description": "Memwa website for collecting and capturing memories",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
@@ -12,6 +12,8 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.25.1",
+    "cloudinary-core": "^2.13.0",
+    "cloudinary-video-player": "^1.9.3",
     "connect-mongo": "^3.2.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
@@ -27,5 +29,13 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "validator": "^13.6.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pascalecodes/binary-upload-boom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pascalecodes/binary-upload-boom/issues"
+  },
+  "homepage": "https://github.com/pascalecodes/binary-upload-boom#readme"
 }

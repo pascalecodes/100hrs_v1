@@ -1,10 +1,39 @@
-<%- include('partials/header') -%>
-<div class="container">
+<%- include('partials/log_header') -%>
+
+<head>
+  <title>Memwa POST</title>
+  <link href="node_modules/cloudinary-video-player/dist/cld-video-player.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/cloudinary-video-player@1.9.0/dist/cld-video-player.min.css" rel="stylesheet">
+</head>
+
+<div class="container px-4 py-5 my-5 text-center">
+  <img class="d-block mx-auto mb-4" src="/imgs/logo.svg" alt="Memwa" width="120" height="120">
+  <h1 class="display-5 fw-bold">POSTS</h1> 
   <div class="row justify-content-center mt-5">
-    <div class="col-6">
+    <div class="d-block mx-auto mb-4">
       <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
-      <div class="row justify-content-between">
+      <!-- <img class="img-fluid" src="<%= post.media%>" />
+      <video
+      id="demo-player"
+      controls
+      autoplay
+      class="cld-video-player">
+      
+      <source src="<%= post.media%>" type="video/mp4" class="card-img-top" alt="<%= post.title%>" />
+      </video> -->
+      <%if(ext == '.mkv'){ %>
+        <video
+        id="demo-player"
+        controls
+        class="card-img-top cld-video-player">
+        
+        <source src="<%= post.media%>" type="video/mp4" class="card-img-top" alt="<%= post.title%>" />
+        </video>
+        <%}else {%>
+          <img class="img-fluid" src="<%= post.media%>" />
+        <%}%>
+
+      <div class="row justify-content-center">
         <form
           class="col-1"
           action="/post/likePost/<%= post.id %>?_method=PUT"
@@ -12,6 +41,7 @@
         >
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
         </form>
+        <h5>Posted by: <%= post.user.userName%></h5>
         <h3 class="col-3">Likes: <%= post.likes %></h3>
         <%if(post.user == user.id){ %>
         <form
@@ -25,34 +55,38 @@
       </div>
     </div> 
     <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
+      <p><h3><%= post.caption %></h3></p>
     </div>
     <div class="mt-5">
-      <h2>Add a comment</h2>
+      <h5>Add a comment</h5>
       <form action="/comment/createComment/<%=post._id%>" method="POST">
         <div class="mb-3">
-          <label for="comment" class="form-label">Comment</label>
+          <label for="comment" class="form-label"></label>
           <input type="text" class="form-control" id="comment" name="comment">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
-    <ul>
-      <!-- add: username and delete button -->
-      <% for(var i=0; i<comments.length; i++) {%>
-        <li class="col-6 justify-content-between mt-5">
-          "<%= comments[i].comment%>"  made by: <%= comments[i].madeBy%>
-          <%if(comments[i].madeByID == user.id) {%>
-          <form
-          action="/comment/deleteComment/<%= comments[i]._id %>/<%= post.id %>?_method=DELETE"
-          method="POST"
-        >
-          <button class="btn btn-outline-danger fa fa-trash" type="submit"> Delete</button>
-        </form>
+    <div class="mt-5">
+      <ul class="mt-5">
+        <!-- add: username and delete button -->
+        <% for(var i=0; i<comments.length; i++) {%>
+          <li class="mt-5">
+            "<%= comments[i].comment%>"  made by: <%= comments[i].madeBy%>
+            <%if(comments[i].madeByID == user.id) {%>
+            <form
+            action="/comment/deleteComment/<%= comments[i]._id %>/<%= post.id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-outline-danger fa fa-trash" type="submit"> Delete</button>
+          </form>
+          <% } %>
+          </li>
         <% } %>
-        </li>
-      <% } %>
-    </ul>
+      </ul>
+
+    </div>
+    
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
       <a class="btn btn-primary" href="/feed">Return to Feed</a>
@@ -60,4 +94,9 @@
   </div>
 </div>
 
-<%- include('partials/footer') -%>
+
+
+<script src="/cloudinary-core/cloudinary-core.js" type="text/javascript"></script>
+
+<script src="https://unpkg.com/cloudinary-video-player@1.9.0/dist/cld-video-player.min.js" 
+    type="text/javascript"></script>

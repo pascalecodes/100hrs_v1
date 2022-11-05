@@ -17,6 +17,7 @@ module.exports = {
       res.redirect("/post/"+req.params.id)
     } catch (err) {
       console.log(err);
+      res.render('error/500')
     }
   },
   deleteComment: async (req, res) => {

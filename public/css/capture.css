@@ -1,0 +1,100 @@
+.capture-container, .watch-container, .find-container{
+    background: rgba(181, 200, 255, 0.15);
+    height: calc(100vh - 95px);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;  
+    line-height: 58px; 
+    border-bottom: solid 1px #3563E9;
+}
+.hero {
+    height: 90px;
+    margin-bottom: 40px;
+}
+/* .capture-container.wrapper {
+    display: flex;
+    justify-content: center;
+} */
+.capture-container h1 {
+    color: #3563E9;
+}
+
+/* .selfCapture-container {
+    width: 50%; 
+} */
+
+.self-capture-text {
+    height: 20%;
+}
+.recording-box {
+    border: 2px solid #000000;
+    border-radius: 25px;
+    height: 50vh;
+    width:80%;
+    display:flex;
+    align-items: center;
+    justify-content:space-around;
+    margin-left:8vw;
+    margin-bottom:200px;
+    /* flex-wrap: wrap;
+    flex-flow: row; */
+}
+.selfCapture-container-page{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.recording-box-captureee {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center; 
+    border: solid 1px red;
+}
+
+.recording-box-capture {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+    background: rgba(9, 230, 75, 0.701);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+}
+
+#btn, #stopbtn, #settingsbtn{
+    height: 4rem;;
+    width: 6.5rem;
+    border-radius: 10%;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+#video {
+    width: 700px;
+    height: 500px;
+    padding: none;
+    border-radius: 20px;
+   
+}
+.btn-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+/* .upload-icon, .settings-icon {
+    height: 40px;
+    width: 40px;
+} */

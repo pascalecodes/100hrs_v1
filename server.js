@@ -58,6 +58,16 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes); // add the use comment route to tell it where to go
+// app.use("/capture", mainRoutes); 
+// app.use("/capture/upload", mainRoutes);
+
+// Default route
+app.get("*", (req, res) => {
+  
+  // Here user can also design an
+  // error page and render it 
+  res.send('Page not found');
+});
 
 //Server Running
 app.listen(process.env.PORT, () => {

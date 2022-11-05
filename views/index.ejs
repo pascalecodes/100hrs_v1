@@ -1,11 +1,32 @@
 <%- include('partials/header') -%>
+<%- include('partials/add_btn') -%>
 
-<main class="container">
+<main>
+    <h1 class="visually-hidden">Heroes examples</h1>
+  
+    <div class="px-4 py-5 my-5 text-center">
+      <img class="d-block mx-auto mb-4" src="/imgs/logo.svg" alt="Memwa" width="120" height="120">
+      <h1 class="display-5 fw-bold">MEMWA</h1>
+      <div class="col-lg-6 mx-auto">
+        <h2>The Best way to preserve the stories and history of your family!</h3>
+        <p class="lead mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, est. Hic commodi nisi, quo enim est, labore iste iusto dolor eaque, expedita alias? Harum obcaecati at eveniet, minus eligendi porro.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <a href="/login" type="button" class="btn btn-primary btn-lg px-4 gap-3">Login</a>
+          <a href="/signup" type="button" class="btn btn-outline-secondary btn-lg px-4">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  
+<!-- <main class="container">
+    <h1>MEMWA</h1>
+    <h2>The Best way to preserve the stories and history of your family!</h3>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, est. Hic commodi nisi, quo enim est, labore iste iusto dolor eaque, expedita alias? Harum obcaecati at eveniet, minus eligendi porro</p>
+    <h3>CAPTURE, WATCH & FIND  public stories from around the world</h3>
     <div class="row justify-content-around mt-5">
         <a href="/login" class="col-3 btn btn-primary"> Login</a>
         <a href="/signup" class="col-3 btn btn-primary"> Signup</a>
-    </div>
-</main>
-    
+    </div> -->
+</main>   
+
 
 <%- include('partials/footer') -%>

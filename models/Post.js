@@ -1,11 +1,19 @@
 const mongoose = require("mongoose");
+//const User = require('./User')
 
 const PostSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    index: true,
   },
-  image: {
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+    index:true,
+  },
+  media: {
     type: String,
     require: true,
   },
@@ -16,14 +24,21 @@ const PostSchema = new mongoose.Schema({
   caption: {
     type: String,
     required: true,
+    index: true,
+  },
+  description: {
+    type: String,
+    required: false,
+    index: true,
+  },
+  status: {
+    type: String,
+    default: 'public',
+    enum:['public', 'private'],
   },
   likes: {
     type: Number,
     required: true,
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
   },
   createdAt: {
     type: Date,
