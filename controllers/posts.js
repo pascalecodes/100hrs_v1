@@ -27,7 +27,7 @@ module.exports = {
   },
   getPost: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id).populate('user').folder;
+      const post = await Post.findById(req.params.id).populate('user');
       // const comments = await Comment.find(post+req.params.id).sort({ createdAt: "desc" }).lean();
       //const users = await User.findById(req.params._id)
     //   const userName = await User.find({_id: req.params.userName})
@@ -64,11 +64,11 @@ module.exports = {
   createPost: async (req, res) => {
     try {
       //Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path, {
-        resource_type: "auto", folder: "memwa",
-      });
-      //const result = await cloudinary.uploader.upload(req.file.path);
-
+      // const result = await cloudinary.uploader.upload(req.file.path, {
+      //   resource_type: "auto", folder: "memwa",
+      // });
+      const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+      
       await Post.create({
         title: req.body.title,
         user: req.user.id,
