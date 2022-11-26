@@ -43,11 +43,13 @@ module.exports = {
   },
   findPost: async (req, res) => {
     try {
-      const {postName} =req.query
-      const posts = await Post.find({title: postName})
-      const ext= posts.map(post=> path.extname(post.media))
-      console.log(posts)
-      res.render("find.ejs", { posts});
+      // const {postName} =req.query
+      // const posts = await Post.find({title: postName})
+      const postID = req.query
+      const posts = await Post.findById(postID)
+      // const ext= posts.map(post=> path.extname(post.media))
+      console.log(postID)
+      res.render("find.ejs", postsID.value);
     } catch (err) {
       console.log(err);
       res.render('error/500')
