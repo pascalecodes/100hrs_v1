@@ -10,7 +10,8 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
-const commentRoutes = require("./routes/comments"); // add new comment routs and route
+const commentRoutes = require("./routes/comments"); // add new comment routes and route
+const findRoutes = require("./routes/find"); // add new find routes and route
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -58,6 +59,7 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes); // add the use comment route to tell it where to go
+app.use("/find", findRoutes); // add find the routes
 // app.use("/capture", mainRoutes); 
 // app.use("/capture/upload", mainRoutes);
 

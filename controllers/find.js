@@ -13,6 +13,22 @@ module.exports = {
       res.render('error/404')
     }
   },
+  findPost: async (req, res) => {
+    try {
+      // const {postName} =req.query
+      // const posts = await Post.find({title: postName})
+      const postID = await Post.findById(req.params.id);
+      console.log(postID.value)
+      //const posts = await Post.findById(postID.value)
+      // const ext= posts.map(post=> path.extname(post.media))
+      
+      res.render("find.ejs", { postID: postID});
+  
+    } catch (err) {
+      console.log(err);
+      res.render('error/500')
+    }
+  },
   // searchData: {
   //   app.get('/restaurants/search', async (req, res) => {
   //     const { resName } = req.query;
@@ -21,4 +37,5 @@ module.exports = {
   // })
   // }
 };
+
 
