@@ -27,7 +27,7 @@ const myWidget = cloudinary.createUploadWidget(
     showAdvancedOptions: true,  //add advanced options (public_id and tag)
     multiple: true,  //restrict upload to a single file
     defaultSource: "local",
-    folder: "memwa", //upload files to the specified folder
+    //folder: "memwa", //upload files to the specified folder
     //tags: ["users", "profile"], //add the given tags to the uploaded files
     // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
     // clientAllowedFormats: ["images"], //restrict uploading to image files only
