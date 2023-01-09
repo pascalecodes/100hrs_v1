@@ -5,6 +5,9 @@ Website to record, watch and search for user stories. Users can login to their p
 
 ![home page screenshot](https://tinypic.host/images/2023/01/09/Screenshot-2023-01-08-at-10.12.17-PM.md.png)
 
+## Who Can Use It:
+Anyone that wants an easy way to capture videos, upload videos and watch videos from others.
+
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, Node.JS, Bootstrap, mongoDB and Cloudinary
@@ -27,6 +30,7 @@ MVP features:
 - Add edit video option- tags, modify entry
 - Add Watch page to watch videos in sequence
 - Enable privacy flag
+- Question Bank to record the answers
 
 ## Lessons Learned:
 
