@@ -2,6 +2,7 @@
 Website to record, watch and search for user stories. Users can login to their profile to record, edit or delete video memories. Users can search for other user stories based on common criteria like location, historical events or profession.
 **Link to project:** tbd
 
+<img src='http://i.imgur.com/580vPI2.png' height='50'></a>
 ![home Page](https://ibb.co/bPc2QZD)
 
 ## How It's Made:
