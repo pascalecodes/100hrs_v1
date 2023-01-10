@@ -10,7 +10,7 @@ Anyone that wants an easy way to capture videos, upload videos and watch videos 
 
 ## How It's Made:
 
-**Tech used:** HTML, CSS, JavaScript, Node.JS, Bootstrap, mongoDB and Cloudinary
+**Tech used:** HTML, CSS, JavaScript, Bootstrap, mongoDB, Cloudinary, ejs, express, passport, mongoose
 
 Node is a pretty lightweight server choice and can be spun up fairly easily. For the backend mondoDB made the most since for the simple mongoose schema creations and since each upload could vary in terms of missing field didn't want to use a SQL database here. Cloudinary waas the choice for media storage so many options for uploading and optimizing media. Down the line haveing different versions of the video based on client playing the video will come in handy. By using Express' built in middleware architecture we could cleanly write fallbacks and we can build images using an API that's very similar to the front-end canvas API. 
 
