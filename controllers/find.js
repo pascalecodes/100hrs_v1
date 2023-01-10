@@ -2,12 +2,13 @@ const cloudinary = require("../middleware/cloudinary");
 require('dotenv').config();
 const Find = require("../models/Post");
 const path = require('path')
-
+//const ItemList = require('../models/itemsList')
 
 module.exports = {
   getFind: async (req, res) => {
     try {
-      res.render("find.ejs");
+      //const items: await ItemList.find()
+      res.render("find.ejs"/*,{itemList:items}*/)
     } catch(err) {
       console.log(err)
       res.render('error/404')
