@@ -23,7 +23,6 @@ MVP features:
 - comment and rate video
 
 ## Additions & Optimizations
-*(optional)*
 - search for videos in database
 - Add Search functionality, for user stories
 - Add other social logins
