@@ -1,4 +1,4 @@
-const cloudName = 'pascaledev' // replace with your own cloud name
+const cloudName = 'djj2zmh8p' // replace with your own cloud name
 const uploadPreset = "lo88fkku" // replace with your own upload preset
 
 
