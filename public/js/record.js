@@ -31,6 +31,8 @@ window.onload = function () {
         a.style = 'display: none';
         a.href = url;
         a.download = vidSave.src;
+        // let fileName = document.getElementById('title')
+        // a.download = fileName
         a.click();
         vidSave.src = url;// create  a new location for file name also
 
