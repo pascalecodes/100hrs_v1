@@ -1,7 +1,7 @@
 // document.getElementById('record-link').onclick= function ()
 
 window.onload = function () {
-    let parts =[];
+    const parts =[];
     let mediaRecorder;
     navigator.mediaDevices.getUserMedia({audio:true, video: true}).then(stream => {
         document.getElementById('video').srcObject  = stream;
@@ -24,17 +24,18 @@ window.onload = function () {
         let blob = new Blob(parts, {
             type: 'video/webm'
         });
-        parts=[];
-        let url = URL.createObjectURL(blob);
-        let a = document.createElement('a');
+        //parts=[];
+        const  url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
         document.body.appendChild(a);
         a.style = 'display: none';
         a.href = url;
-        a.download = vidSave.src;
+        //a.download = vidSave.src;
+        a.download = "test.webm";
         // let fileName = document.getElementById('title')
         // a.download = fileName
         a.click();
-        vidSave.src = url;// create  a new location for file name also
+        //vidSave.src = url;// create  a new location for file name also
 
     }
 }
