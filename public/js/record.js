@@ -35,7 +35,7 @@ window.onload = function () {
         // let fileName = document.getElementById('title')
         // a.download = fileName
         a.click();
-        //vidSave.src = url;// create  a new location for file name also
+        vidSave.src = url;// create  a new location for file name also
 
     }
 }
