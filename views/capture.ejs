@@ -18,22 +18,35 @@
             <video muted id="video" autoplay></video>
             <div class="btn-box">  
                 <button type="button" class="btn" id="start-btn" style="background:green" data-bs-toggle="button"><i class="fa fa-video" style="font-size:24px" aria-hidden="true"> Start</i></button>
-                <button class="btn" id="stop-btn" style="background:red"><i class="fa fa-stop-circle" style="font-size:24px" aria-hidden="true"> Stop</i></button>    
+                <button class="btn" id="stop-btn" style="background:red"><i class="fa fa-stop-circle" style="font-size:24px" aria-hidden="true"> Stop</i></button> 
+                <p id="message"></p>    
             </div>
-            <p id="message"></p>
+            
             <!-- create post info to go along with capture -->
             <!-- work on making capture straight to streaming work and add entry to mongodb -->
             <div class="mt-12">
                 <h4>Record Post</h4>
+                <div class="mt-5">
                 <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-                  <div class="mb-3">
+                  <div class="mb-3 text-left">
                       <label for="title" class="form-label">Title</label>
                       <input type="text" class="form-control" id="title" name="title" placeholder="Title">
-                      <input type="file" class="form-control" id="mediaUpload" name="file">
+                      <label for="caption" class="form-label">Caption*</label>
+                      <textarea class="form-control" id="caption" name="caption"></textarea>
+                      <label for="description" class="form-label">Describe Your Content</label>
+                      <textarea class="form-control" id="description" style="height:8rem" name="description"></textarea>
+                      <label for="status">Status</label>
+                      <select name="status" id="status" class="form-select" aria-label="Default select example">
+                        <option selected>Select visibility</option>
+                        <option value="public" selected>Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                    <input type="file" class="form-control" id="mediaUpload" name="file">
                   </div>
                   <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
                 </form>
               </div>
+            </div>
 
             <video id="vid2" controls></video>
 
