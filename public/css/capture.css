@@ -2,7 +2,7 @@
     background: rgba(181, 200, 255, 0.15);
     height: calc(100vh - 95px);
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-around;
     flex-wrap: wrap;
     text-align: center;  
@@ -44,16 +44,16 @@
 .selfCapture-container-page{
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
 
 }
-.recording-box-captureee {
+.recording-box-capture {
     height: 80vh;
     width: 100%;
     display: flex;
-    justify-content:center;
-    align-items: center; 
+    /* justify-content:center;
+    align-items: center;  */
     border: solid 1px red;
 }
 
@@ -69,7 +69,7 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
   
 }
 
