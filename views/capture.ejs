@@ -34,6 +34,25 @@
                     </select>
                     <input type="file" class="form-control" id="mediaUpload" name="file">
                   </div>
+
+<!-- work or fixing submit path -->
+                  <!-- <label for="video-response">Video Response:</label>
+                <video id="vid2" controls></video> -->
+              
+                <!-- <button type="button" id="start-recording-button">Start Recording</button>
+                <button type="button" id="stop-recording-button">Stop Recording</button> -->
+                <!-- <button type="submit">Submit</button> -->
+
+                <!-- <div class="px-4  py-5 selfCapture-container-page">
+                    <div class="recording-box-capture">
+                        <p>Press START to record directly from your device</p>
+                        <video muted id="video" autoplay></video>
+                        <div class="btn-box">  
+                            <button type="button" class="btn" id="start-btn" style="background:green" data-bs-toggle="button"><i class="fa fa-video" style="font-size:24px" aria-hidden="true"> Start</i></button>
+                            <button class="btn" id="stop-btn" style="background:red"><i class="fa fa-stop-circle" style="font-size:24px" aria-hidden="true"> Stop</i></button> 
+                            <p id="message"></p>    
+                </div> -->
+<!-- this part -->
                   <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
                 </form>
               </div>
@@ -51,7 +70,8 @@
             
             
 
-            <video id="vid2" controls></video>
+            <video id="vid2" controls></video> 
+            
 
             <div class="btn-box">
                 <a class="btn"  id="upload_widget" class="cloudinary-button" style="background:blue"><i class="fa fa-upload" style="font-size:24px" aria-hidden="true"> Upload</i></a>
@@ -85,7 +105,55 @@
     </script>
     <script src="node_modules/cloudinary-video-player/dist/cld-video-player.min.js" 
     type="text/javascript"></script>
+    <!-- <script>
+        // Get access to camera and microphone
+        const mediaDevices = navigator.mediaDevices;
+        const constraints = { audio: true, video: true };
+        const videoElem = document.getElementById('video-response');
+        const streamPromise = mediaDevices.getUserMedia(constraints);
+      
+        // Usable stream
+        let stream;
+      
+        // MediaRecorder
+        let mediaRecorder;
+      
+        // Start recording
+        const startRecording = () => {
+          mediaRecorder = new MediaRecorder(stream);
+          const chunks = [];
+      
+          mediaRecorder.ondataavailable = (event) => {
+            chunks.push(event.data);
+          };
+      
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(chunks, { type: 'video/mp4' });
+            // Use Axios or fetch to send the file to the server
+          };
+      
+          mediaRecorder.start();
+        };
+      
+        // Stop recording
+        const stopRecording = () => {
+          mediaRecorder.stop();
+        };
+      
+        // Set up video element source
+        streamPromise.then((usableStream) => {
+          stream = usableStream;
+          videoElem.srcObject = stream;
+        });
+      
+        // Add event listeners to buttons
+        const startBtn = document.getElementById('start-recording-button');
+        const stopBtn = document.getElementById('stop-recording-button');
+        const formElem = document.getElementById('video-form');
+      
+        startBtn.addEventListener('click', startRecording);
+    </script>
   
   
-    
+     -->
 
