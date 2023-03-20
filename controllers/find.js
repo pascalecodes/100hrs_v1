@@ -3,12 +3,24 @@ require('dotenv').config();
 const Find = require("../models/Post");
 const path = require('path')
 //const ItemList = require('../models/itemsList')
+//const connectDB = require("./config/database");
+//const db = connectDB()
+
+
 
 module.exports = {
   getFind: async (req, res) => {
     try {
+      //const collection = db.collection('Test100hrsV1')
+      const findTitle = Find.find({title: req.query.title})
+      //const findDescription = req.query.description.split(',')
+      //const findCaption = req.query.caption
+      
+      res.render('find.ejs', {findTitle})
       //const items: await ItemList.find()
-      res.render("find.ejs"/*,{itemList:items}*/)
+      //res.render("find.ejs"/*,{itemList:items}*/)
+      console.log(findTitle)
+
     } catch(err) {
       console.log(err)
       res.render('error/404')
