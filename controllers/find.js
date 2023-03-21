@@ -1,18 +1,21 @@
 const cloudinary = require("../middleware/cloudinary");
 require('dotenv').config();
-const Find = require("../models/Post");
+const Post= require("../models/Post");
 const path = require('path')
 //const ItemList = require('../models/itemsList')
 //const connectDB = require("./config/database");
 //const db = connectDB()
 
 
-
 module.exports = {
   getFind: async (req, res) => {
     try {
       //const collection = db.collection('Test100hrsV1')
-      const findTitle = Find.find({title: req.query.title})
+      const query = req.query.q
+      const findTitle =  await Post.find({title: query})
+      //db.collection('posts').find({$or: [{title: query}, {tags: query}]}).toArray(function(err, results) {
+
+        //res.render('search.ejs', {results: results});
       //const findDescription = req.query.description.split(',')
       //const findCaption = req.query.caption
       
