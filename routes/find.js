@@ -9,7 +9,7 @@ const findController = require("../controllers/find");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //router.get("/find", ensureAuth, findController.getFind)
-router.get("/", findController.findPost)
+router.get("/search-term", findController.findPost)
 // async (req, res) => {
 //     const { resName } = req.query;
 //     const restaurants = await Restaurant.find({ $text: { $search: { name: resName } } });
