@@ -19,10 +19,10 @@ module.exports = {
       //const findDescription = req.query.description.split(',')
       //const findCaption = req.query.caption
       
-      res.render('find.ejs', {findTitle})
+      res.render('find.ejs', {results: findTitle})
       //const items: await ItemList.find()
       //res.render("find.ejs"/*,{itemList:items}*/)
-      console.log(findTitle)
+      console.log(query)
 
     } catch(err) {
       console.log(err)
