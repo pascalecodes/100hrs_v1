@@ -12,17 +12,16 @@ module.exports = {
     try {
       //const collection = db.collection('Test100hrsV1')
       const query = req.query.q
-      const findTitle =  await Post.find({title: query})
+      const findTitle =  await Post.find({$or: [{title: query}]}).populate('title')
       //db.collection('posts').find({$or: [{title: query}, {tags: query}]}).toArray(function(err, results) {
 
         //res.render('search.ejs', {results: results});
       //const findDescription = req.query.description.split(',')
       //const findCaption = req.query.caption
-      
-      res.render('find.ejs', {results: findTitle})
+      res.render('find.ejs', {results: findTitle, title: req.title})
       //const items: await ItemList.find()
       //res.render("find.ejs"/*,{itemList:items}*/)
-      console.log(query)
+      console.log(`this is it: ${query}`)
 
     } catch(err) {
       console.log(err)
