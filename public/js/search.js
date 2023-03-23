@@ -1,4 +1,4 @@
-// search.js
+// search.js client side js for listener no longer needed created get form
 
 const searchForm = document.querySelector('form');
 

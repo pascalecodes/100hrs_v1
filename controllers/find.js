@@ -33,11 +33,12 @@ module.exports = {
       const searchTerm= req.query.searchTerm;
       let posts;
       if(searchTerm){
-        posts = await Post.find({name: {$regex: searchTerm, $options: 'i'}});
+        posts = await Post.find({title: {$regex: searchTerm, $options: 'i'}});
+        console.log(posts)
       }else {
         posts = await Post.find()
       }
-
+  
       // const {postName} =req.query
       // const posts = await Post.find({title: postName})
 
