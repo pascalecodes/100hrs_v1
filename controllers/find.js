@@ -30,14 +30,25 @@ module.exports = {
   },
   findPost: async (req, res) => {
     try {
+      const searchTerm= req.query.searchTerm;
+      let posts;
+      if(searchTerm){
+        posts = await Post.find({name: {$regex: searchTerm, $options: 'i'}});
+      }else {
+        posts = await Post.find()
+      }
+
       // const {postName} =req.query
       // const posts = await Post.find({title: postName})
-      const postID = await Post.findById(req.params.id);
-      console.log(postID.value)
+
+      //const postID = await Post.findById(req.params.id);
+      //console.log(postID.value)
+
       //const posts = await Post.findById(postID.value)
       // const ext= posts.map(post=> path.extname(post.media))
       
-      res.render("find.ejs", { postID: postID});
+      res.render("find.ejs", { posts: posts, searchTerm: searchTerm});
+      console.log(`this is it: ${searchTerm}`)
   
     } catch (err) {
       console.log(err);
