@@ -43,7 +43,7 @@ module.exports = {
       }else {
         posts = await Post.find()
       }
-      const postID = await Post.findById(req.params.id).populate('user');
+    
   
       // const {postName} =req.query
       // const posts = await Post.find({title: postName})
