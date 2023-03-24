@@ -11,6 +11,7 @@
         <img class="d-block mx-auto mb-4" src="/imgs/logo.svg" alt="Memwa" width="120" height="120">
         <h1 class="display-5 fw-bold">Memwa FIND</h1>
         <h5>Find and Browse through stories</h5> 
+        <h6>Browse through <b>2,100</b> stories from <b>69</b> countries</h6>
       </div>
       <div class="text-right">
       <div class="search-container">
@@ -24,16 +25,23 @@
               </button> -->
               </form>
             </div>   
-          </div>   
+          </div> 
+          
+          <div class="form-outline col-lg-10 mx-auto">
+            <% if(posts.length > 0 && searchTerm != undefined) {%>
+              <ul>
+                <% posts.forEach(post => { %>
+                <a href="/post/<%= post.id%>"><li><%=post.title %></li></a>
+              <% }) %>
+              </ul>
+              <%}else {%>
+                <h3>No Results</h3>
+              <% } %>
+          </div>
       </div>
-      <p class="px-4 py-5 my-5 text-center">Browse through <b>2,100</b> stories from <b>69</b> countries</p>
+      
     </div>
     <div>
-      <ul>
-        <% posts.forEach(post => { %>
-        <li><%=post.title %></li>
-      <% }) %>
-      </ul>
     </div>
     <!-- <div id="search-results"></div> -->
   
