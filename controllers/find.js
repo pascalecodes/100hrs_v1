@@ -33,11 +33,17 @@ module.exports = {
       const searchTerm= req.query.searchTerm;
       let posts;
       if(searchTerm){
-        posts = await Post.find({title: {$regex: searchTerm, $options: 'i'}});
+        //search for term in title
+        //posts = await Post.find({title: {$regex: searchTerm, $options: 'i'}});
+
+        //search for term in title, caption or description
+        posts = await Post.find({$or: [{title: {$regex: searchTerm, $options: 'i'}}, {caption: {$regex: searchTerm, $options: 'i'}}, {description: {$regex: searchTerm, $options: 'i'}}]});
+
         console.log(posts)
       }else {
         posts = await Post.find()
       }
+      const postID = await Post.findById(req.params.id).populate('user');
   
       // const {postName} =req.query
       // const posts = await Post.find({title: postName})
@@ -49,6 +55,7 @@ module.exports = {
       // const ext= posts.map(post=> path.extname(post.media))
       
       res.render("find.ejs", { posts: posts, searchTerm: searchTerm});
+    
       console.log(`this is it: ${searchTerm}`)
   
     } catch (err) {
