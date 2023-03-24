@@ -38,7 +38,6 @@ module.exports = {
 
         //search for term in title, caption or description
         posts = await Post.find({$or: [{title: {$regex: searchTerm, $options: 'i'}}, {caption: {$regex: searchTerm, $options: 'i'}}, {description: {$regex: searchTerm, $options: 'i'}}]});
-
         console.log(posts)
       }else {
         posts = await Post.find()
