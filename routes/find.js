@@ -9,13 +9,13 @@ const findController = require("../controllers/find");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //router.get("/find", ensureAuth, findController.getFind)
-router.get("/find", findController.findPost)
+router.get("/", findController.getFind)
 // async (req, res) => {
 //     const { resName } = req.query;
 //     const restaurants = await Restaurant.find({ $text: { $search: { name: resName } } });
 //     res.render('restaurants', { restaurants });
 // })
-//router.post("/find", ensureAuth, findController.uploadFile)
+router.post("/", findController.postFind)
 //router.get("/find/:id", findController.findID);
 
 module.exports = router;
