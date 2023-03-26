@@ -15,12 +15,43 @@
     <div class="col-lg-6 mx-auto">   
   </div>
 
+      <!--carousel.ejs-->
+    <!-- <div class="carousel">
+      <% posts.forEach(post => { %>
+        <div class="carousel-item">
+          <video src="<%= post.media %>" controls></video>
+        </div>
+      <% }) %>
+    </div> -->
+
+    <div id="video-carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% posts.forEach(function(post, index) { %>
+          <div class="carousel-item <% if (index === 0) { %>active<% } %>">
+            <video controls>
+              <source src="<%= post.media %>" type="video/mp4">
+            </video>
+          </div>
+        <% }); %>
+      </div>
+      <a class="carousel-control-prev" href="#video-carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#video-carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    
+
+
 
   <!-- ************************************* -->
   <!-- previous carousel for playing media, disabled until fix video -->
 
-  <% posts.forEach(function(post) { %>
-    <%if(ext == '.mkv'){ %>
+  <!-- <% posts.forEach(function(post) { %>
+    <%if(post.media.ext == '.mkv'){ %>
 
     <h3><%=post.title%> by <%=post.user.userName%> </h3> 
     <video
@@ -34,7 +65,7 @@
       <h3><%=post.title%> by <%=post.user.userName%> </h3> 
       <img src="<%= post.media%>" alt="<%= post.title%>" />
       <%}%>
-  <% }); %>
+  <% }); %> -->
 
 <!-- Carousel wrapper -->
 <!-- <div
