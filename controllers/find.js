@@ -8,8 +8,8 @@ const path = require('path')
 
 
 module.exports = {
-  getFind: async (req, res) => {
-    try {
+  getSearch: (req, res) => {
+    //const query= req.query.q
       //const collection = db.collection('Test100hrsV1')
       //const query = req.query.q
       //const findTitle =  await Post.find({$or: [{title: query}]}).populate('title')
@@ -18,35 +18,33 @@ module.exports = {
         //res.render('search.ejs', {results: results});
       //const findDescription = req.query.description.split(',')
       //const findCaption = req.query.caption
-      res.render('find.ejs', {results: [] })
+      res.render('search.ejs', {results: [] })
       //const items: await ItemList.find()
       //res.render("find.ejs"/*,{itemList:items}*/)
       console.log(`get results: ${results}`)
-
-    } catch(err) {
-      console.log(err)
-      res.render('error/404')
-    }
   },
-  postFind: async (req, res) => {
-    const query = req.body.query
+  postSearch: async (req, res) => {
+    const query = req.body.q
     try {
       const results =  await Post.find({
         $or: [
-          {title: {$regex: guery, $options: 'i'}},
-          {body: {$regex: query, $options: 'i'}}
+          {title: {$regex: query, $options: 'i'}},
+          {caption: {$regex: query, $options: 'i'}},
+          {description: {$regex: query, $options: 'i'}}
         ]
       })
-      res.render('find.ejs', {results})
+      console.log(query)
+      res.render('search.ejs', {results})
       console.log(`post results: ${results}`)
 
     } catch(err) {
       //console.log(err)
       console.error(err)
       //res.render('error/404')
-      res.render('find.ejs', {results: []})
+      res.render('search.ejs', {results: []})
     }
   },
+  //This is the function that is being used for the search and find functionality
   findPost: async (req, res) => {
     try {
       const searchTerm= req.query.searchTerm;
