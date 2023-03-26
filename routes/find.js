@@ -8,14 +8,15 @@ const captureController = require("../controllers/capture");
 const findController = require("../controllers/find");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
+
 //router.get("/find", ensureAuth, findController.getFind)
-router.get("/", findController.getFind)
+router.get("/", findController.getSearch)
 // async (req, res) => {
 //     const { resName } = req.query;
 //     const restaurants = await Restaurant.find({ $text: { $search: { name: resName } } });
 //     res.render('restaurants', { restaurants });
 // })
-router.post("/", findController.postFind)
+router.post("/", findController.postSearch)
 //router.get("/find/:id", findController.findID);
 
 module.exports = router;
