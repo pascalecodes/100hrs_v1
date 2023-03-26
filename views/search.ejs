@@ -1,0 +1,22 @@
+<%- include('partials/log_header') -%>
+
+<!-- search.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Results</title>
+</head>
+<body>
+  <h1>Search Results</h1>
+  <% if (results.length > 0) { %>
+    <ul>
+      <% results.forEach(result => { %>
+        <li><%= result.title %></li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No results found.</p>
+  <% } %>
+  <a href="/">Back to Home</a>
+</body>
+</html>
