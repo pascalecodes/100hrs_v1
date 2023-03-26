@@ -47,10 +47,11 @@
           <!-- <li><a href="#" class="nav-link px-2 text-white">About</a></li> -->
         </ul>
 
-        <!-- Disabled until Fix search so it redirects to find page when enter is pressed -->
-        <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search"name="searchTerm" />
-        </form> -->
+        <!-- Fixed search so it redirects to find page when enter is pressed -->
+        <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> -->
+        <form class="search" action="/find" method="GET">
+          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search" name="searchTerm" />
+        </form>
 
         <div class="text-end">
           <a href="/logout" type="button" class="btn btn-outline-light me-2">Logout</a>
