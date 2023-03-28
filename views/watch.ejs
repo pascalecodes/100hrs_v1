@@ -16,16 +16,16 @@
   </div>
 
       <!--carousel.ejs-->
-    <!-- <div class="carousel">
+    <div class="carousel">
       <% posts.forEach(post => { %>
         <div class="carousel-item">
           <video src="<%= post.media %>" controls></video>
         </div>
       <% }) %>
-    </div> -->
+    </div>
 
     <div id="video-carousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
+      <!-- <div class="carousel-inner">
         <% posts.forEach(function(post, index) { %>
           <div class="carousel-item <% if (index === 0) { %>active<% } %>">
             <video controls>
@@ -33,7 +33,7 @@
             </video>
           </div>
         <% }); %>
-      </div>
+      </div> -->
       <a class="carousel-control-prev" href="#video-carousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
