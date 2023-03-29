@@ -15,15 +15,20 @@
     <div class="col-lg-6 mx-auto">   
   </div>
 
-      <!--carousel.ejs-->
-    <div class="carousel">
+  <!-- Playlist -->
+  <div class="col-6 list-unstyled">
+    <h4>Memwa View Playlist</h4>
+    <% for(var i=0; i<playlist.length; i++) {%>
+      <li> <a href="/post/<%= posts[i].media%>"<h3><%= posts[i].title%></h3></li>
+     <% } %>
+  </div>
+  
       <% posts.forEach(post => { %>
         <div class="carousel-item">
           <video src="<%= post.media %>" controls></video>
         </div>
-      <% }) %>
-    </div>
 
+      <% }) %>
     <div id="video-carousel" class="carousel slide" data-ride="carousel">
       <!-- <div class="carousel-inner">
         <% posts.forEach(function(post, index) { %>
