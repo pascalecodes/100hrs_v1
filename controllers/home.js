@@ -36,6 +36,8 @@ module.exports = {
       // }
       const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
       const ext= posts.map(post=> path.extname(post.media))
+      //const playlist = posts.map(post => `${post.title} by ${post.user.userName}`)
+      const playlist = posts.map(post => [post._id, post.title, post.user.userName, post.media])
       //const playlist = posts.forEach(post => {title: post.title, media: post.media, user: post.userName})
 
       // const video_list = function(req, res) {
@@ -57,8 +59,9 @@ module.exports = {
       //res.render("feed.ejs", { posts: posts });
       console.log(posts)
       console.log(ext)
+      console.log(playlist)
       // console.log(video_list)
-      res.render("watch.ejs", {posts: posts, user: req.user, ext: req.ext});
+      res.render("watch.ejs", {posts: posts, user: req.user, ext: req.ext, playlist: playlist});
     } catch(err) {
       console.log(err)
       res.render('error/404')
