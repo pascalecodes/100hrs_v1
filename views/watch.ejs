@@ -15,22 +15,35 @@
     <div class="col-lg-6 mx-auto">   
   </div>
 
+  <!-- videoList -->
+
+  <h1>Video List</h1>
+  <ul>
+    <% videos.forEach(post => { %>
+      <li>
+        <a href="/posts/<%= video._id %>">
+          <%= posts.title %>
+        </a>
+      </li>
+    <% }); %>
+  </ul>
+
   <!-- Playlist -->
-  <div class="col-6 list-unstyled">
+  <!-- <div class="col-6 list-unstyled">
     <h4>Memwa View Playlist</h4>
     <% for(var i=0; i<playlist.length; i++) {%>
       <li> <a href="/post/<%= posts[i].media%>"<h3><%= posts[i].title%></h3></li>
      <% } %>
-  </div>
+  </div> -->
   
-      <% posts.forEach(post => { %>
+      <!-- <% posts.forEach(post => { %>
         <div class="carousel-item">
           <video src="<%= post.media %>" controls></video>
         </div>
 
-      <% }) %>
+      <% }) %> -->
     <div id="video-carousel" class="carousel slide" data-ride="carousel">
-      
+
       <!-- <div class="carousel-inner">
         <% posts.forEach(function(post, index) { %>
           <div class="carousel-item <% if (index === 0) { %>active<% } %>">

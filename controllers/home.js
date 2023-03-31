@@ -67,5 +67,26 @@ module.exports = {
       res.render('error/404')
     }
   },
+  // test getvideo player function
+  getVideo: (req, res) =>{
+      const posts = Post.find().sort({ createdAt: "desc" }).populate('user').lean();
+      const video_list = (req, res, next)=> {
+        Post.find({}, (err, videos) => {
+          if (err) return next(err);
+          res.render('watch.ejs', { videos: video_list });
+        console.log(videos)
+        });
+      };
+      
+      const video_detail = (req, res, next) => {
+        Post.findById(req.params.id, (err, video) => {
+          if (err) return next(err);
+          res.render('watch.ejs', { video: video_detail });
+        });
+      };
+      res.render('watch.ejs', {posts: posts, videos: video_list, video: video_detail})
+  console.log(video_list)
+
+  },
 
 };

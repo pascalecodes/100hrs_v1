@@ -16,7 +16,8 @@ router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
-router.get("/watch", ensureAuth, homeController.getWatch)
+//router.get("/watch", ensureAuth, homeController.getWatch)
+router.get("/watch", ensureAuth, homeController.getVideo)
 //router.get("/playlist", ensureAuth, homeController.getPlaylist)
 router.post("/signup", authController.postSignup);
 router.get("/capture", ensureAuth, captureController.getCapture);
