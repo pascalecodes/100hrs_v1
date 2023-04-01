@@ -91,8 +91,8 @@ module.exports = {
       //     res.render('watch.ejs', { video: video_detail });
       //   });
       // };
-      console.log( video_list)
-      res.render('watch.ejs', {posts: posts, videos: video_list, video_detail: video_detail})
+      console.log( video_detail)
+      res.render('watch.ejs', {posts: posts, videos: video_list, detail: video_detail})
   
     } catch(err) {
       console.log(err)
