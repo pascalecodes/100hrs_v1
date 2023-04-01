@@ -18,23 +18,31 @@
   <!-- videoList -->
 
   <h1>Video List</h1>
-  <ul>
-    <% videos.forEach(post => { %>
+  <!-- <ul>
+    <% videos.forEach(video => { %>
       <li>
-        <a href="/posts/<%= video._id %>">
-          <%= posts.title %>
+        <a href="/post/<%= video.id %>">
+          <%= video.title %>
+        </a>
+      </li>
+    <% }); %>
+  </ul> -->
+  <ul>
+    <% videos.forEach(video => { %>
+      <li>
+        <a href="/post/<%= video.id %>">
+          <%= video.title %>
         </a>
       </li>
     <% }); %>
   </ul>
 
+  <h1><%= videos.title %></h1>
+  <p><%= videos.description %></p>
+  <!-- <video src="<%= video_detail.url %>" controls></video> -->
+
   <!-- Playlist -->
-  <!-- <div class="col-6 list-unstyled">
-    <h4>Memwa View Playlist</h4>
-    <% for(var i=0; i<playlist.length; i++) {%>
-      <li> <a href="/post/<%= posts[i].media%>"<h3><%= posts[i].title%></h3></li>
-     <% } %>
-  </div> -->
+  
   
       <!-- <% posts.forEach(post => { %>
         <div class="carousel-item">
@@ -44,15 +52,18 @@
       <% }) %> -->
     <div id="video-carousel" class="carousel slide" data-ride="carousel">
 
-      <!-- <div class="carousel-inner">
+      <div class="carousel-inner">
         <% posts.forEach(function(post, index) { %>
           <div class="carousel-item <% if (index === 0) { %>active<% } %>">
             <video controls>
-              <source src="<%= post.media %>" type="video/mp4">
+              <source src="<%= video_detail.url %>" type="video/mp4">
             </video>
           </div>
         <% }); %>
-      </div> -->
+      </div>
+
+      
+
       <a class="carousel-control-prev" href="#video-carousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>

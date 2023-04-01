@@ -68,25 +68,36 @@ module.exports = {
     }
   },
   // test getvideo player function
-  getVideo: (req, res) =>{
-      const posts = Post.find().sort({ createdAt: "desc" }).populate('user').lean();
-      const video_list = (req, res, next)=> {
-        Post.find({}, (err, videos) => {
-          if (err) return next(err);
-          res.render('watch.ejs', { videos: video_list });
-        console.log(videos)
-        });
-      };
-      
-      const video_detail = (req, res, next) => {
-        Post.findById(req.params.id, (err, video) => {
-          if (err) return next(err);
-          res.render('watch.ejs', { video: video_detail });
-        });
-      };
-      res.render('watch.ejs', {posts: posts, videos: video_list, video: video_detail})
-  console.log(video_list)
+  getVideo: async (req, res) =>{
+    try{
+      const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
+      const video_list = await 
+        Post.find()
+       
+  
+        const video_detail = []; // initialize empty playlist array
 
+        video_list.forEach(video => {
+          video_detail.push({
+            title: video.title,
+            url: video.media,
+            id: video._id
+          }); // add video objects to playlist array
+        });
+      // const video_detail = (req, res, next) => {
+      //   Post.findById(req.params.id, (err, video) => {
+      //     if (err) return next(err);
+      //     console.log(video_detail)
+      //     res.render('watch.ejs', { video: video_detail });
+      //   });
+      // };
+      console.log( video_list)
+      res.render('watch.ejs', {posts: posts, videos: video_list, video_detail: video_detail})
+  
+    } catch(err) {
+      console.log(err)
+      res.render('error/404')
+    }
   },
 
 };
