@@ -30,13 +30,20 @@
   <div class="carousel-inner">
     <% detail.forEach(function(video, index) { %>
       <div class="item <% if(index == 0) { %> active <% } %> ">
-        <video src="<%= video.url %>" controls autoplay width="800" height="600"></video>
+        <video class="embed-responsive-item" src="<%= video.url %>" controls width="800" height="600" poster="<%= video.poster %>"></video>
+       
+      <!-- <image src="<%= video.url %>" type="jpg"></image> -->
+     
+        <!-- <div class="carousel-caption">
+          <h3><%= video.title %></h3>
+          <p><%= video.description %></p>
+        </div> -->
         <!-- <img src="<%= video.url%>" alt="<%= video.title%>" /> -->
         <!-- <h3><%=video.title%> by <%=video.user%> </h3>  -->
       </div>
     <% }); %>
   </div>
-
+  
 
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#videoCarousel"  data-slide="prev">
