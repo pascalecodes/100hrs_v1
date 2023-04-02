@@ -72,7 +72,7 @@ module.exports = {
     try{
       const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
       const video_list = await 
-        Post.find()
+        Post.find().populate('user')
        
   
         const video_detail = []; // initialize empty playlist array
@@ -80,6 +80,8 @@ module.exports = {
         video_list.forEach(video => {
           video_detail.push({
             title: video.title,
+            user: video.user.userName,
+            description: video.description,
             url: video.media,
             id: video._id
           }); // add video objects to playlist array
