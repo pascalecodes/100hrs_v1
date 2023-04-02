@@ -71,6 +71,7 @@ module.exports = {
   getVideo: async (req, res) =>{
     try{
       const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
+      const ext= posts.map(post=> path.extname(post.media))
       const video_list = await 
         Post.find().populate('user')
        
@@ -83,18 +84,12 @@ module.exports = {
             user: video.user.userName,
             description: video.description,
             url: video.media,
-            id: video._id
+            id: video._id,
+            ext: video.ext
           }); // add video objects to playlist array
         });
-      // const video_detail = (req, res, next) => {
-      //   Post.findById(req.params.id, (err, video) => {
-      //     if (err) return next(err);
-      //     console.log(video_detail)
-      //     res.render('watch.ejs', { video: video_detail });
-      //   });
-      // };
       console.log( video_detail)
-      res.render('watch.ejs', {posts: posts, videos: video_list, detail: video_detail})
+      res.render('watch.ejs', {posts: posts, ext: req.ext, videos: video_list, detail: video_detail, user: req.user})
   
     } catch(err) {
       console.log(err)
