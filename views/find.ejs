@@ -6,25 +6,29 @@
   <link href="node_modules/cloudinary-video-player/dist/cld-video-player.min.css" rel="stylesheet">
   <link href="https://unpkg.com/cloudinary-video-player@1.9.0/dist/cld-video-player.min.css" rel="stylesheet">
 </head>
-<section>
+<section class="searchArea">
     <div class="px-4 py-5 my-5 text-center">
         <img class="d-block mx-auto mb-4" src="/imgs/logo.svg" alt="Memwa" width="120" height="120">
         <h1 class="display-5 fw-bold">Memwa FIND</h1>
         <h5>Find and Browse through stories</h5> 
         <h6>Browse through <b>2,100</b> stories from <b>69</b> countries</h6>
       </div>
-      <div class="text-right">
+      <div >
       <div class="search-container">
-          <div class="input-group mb-3">
+          <div class="input-group mb-2">
             <div class="form-outline col-lg-10 mx-auto">
-              <form class="find" action="/find" method="GET">
-                <input placeholder="Search for stories....." type="text" id="search-input" class="bar" name="searchTerm" value="<%=searchTerm%>"/>
-                <button type="submit">Find</button>
-              <!-- <button id="search-button" type="button" class="btn btn-primary" >
+              <!-- <form class="find" action="/find" method="GET">
+                <input placeholder="Search for stories....." type="text" id="search-input" class="bar" name="searchTerm" value="<%=searchTerm%>"/> -->
+                <form class="find" action="/find" method="GET">
+                  <input type="text" placeholder="Search for stories or people"  id="search-input" class="form-control" name="searchTerm" value="<%=searchTerm%>"/>
+                <!-- <button type="submit">Find</button> -->
+                
+              <button type="submit" class="btn btn-primary" >
                 <i class="fas fa-search"></i>
-              </button> -->
+              </button>
               </form>
-            </div>   
+            </div>  
+           
           </div> 
           
           <div class="form-outline col-lg-10 mx-auto">
