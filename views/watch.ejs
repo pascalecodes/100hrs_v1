@@ -32,7 +32,10 @@
       <div class="item <% if(index == 0) { %> active <% } %> ">
         <%if(video.ext == '.mkv' || video.ext =='.mp4'){ %>
 
-        <video class="embed-responsive-item" src="<%= video.url %>" controls width="800" height="600" poster="<%= video.poster %>"></video>
+        <video class="embed-responsive-item" controls width="800" height="600" poster="<%= video.poster %>">
+          <source src="<%= video.url %>" type="video/webm">
+          <source src="<%= video.url %>" type="video/mp4">
+        </video>
 
         <%}else {%>
           <center><image src="<%= video.url %>" type="jpg" class="embed-responsive-item" width="800" height="600" ></image></center>
