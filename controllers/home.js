@@ -71,10 +71,10 @@ module.exports = {
   getVideo: async (req, res) =>{
     try{
       const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
-      const ext= posts.map(post=> path.extname(post.media))
+      
       const video_list = await 
         Post.find().populate('user')
-       
+        //const ext= video_list.map(video=> path.extname(video.media))
   
         const video_detail = []; // initialize empty playlist array
 
@@ -85,11 +85,11 @@ module.exports = {
             description: video.description,
             url: video.media,
             id: video._id,
-            ext: video.ext
+            ext: path.extname(video.media)
           }); // add video objects to playlist array
         });
       console.log( video_detail)
-      res.render('watch.ejs', {posts: posts, ext: req.ext, videos: video_list, detail: video_detail, user: req.user})
+      res.render('watch.ejs', {posts: posts, videos: video_list, detail: video_detail, user: req.user})
   
     } catch(err) {
       console.log(err)
