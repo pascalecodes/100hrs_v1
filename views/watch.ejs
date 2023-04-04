@@ -30,10 +30,15 @@
   <div class="carousel-inner">
     <% detail.forEach(function(video, index) { %>
       <div class="item <% if(index == 0) { %> active <% } %> ">
+        <%if(video.ext == '.mkv' || video.ext =='.mp4'){ %>
+
         <video class="embed-responsive-item" src="<%= video.url %>" controls width="800" height="600" poster="<%= video.poster %>"></video>
+
+        <%}else {%>
+        <image src="<%= video.url %>" type="jpg" class="embed-responsive-item" width="800" height="600"></image>
+        <%}%>
        
-      <!-- <image src="<%= video.url %>" type="jpg"></image> -->
-     
+      
         <!-- <div class="carousel-caption">
           <h3><%= video.title %></h3>
           <p><%= video.description %></p>
