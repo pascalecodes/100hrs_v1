@@ -12,29 +12,9 @@
       <h1 class="display-5 fw-bold">Memwa CAPTURE</h1>
       <h5>Record a Story to Memwa</h5> 
       <!-- <div class="col-lg-6 mx-auto">    -->
-    </div>
+    </div>   
 <!-- create post info to go along with capture -->
             <!-- work on making capture straight to streaming work and add entry to mongodb -->
-            <div class="px-4 col-4">
-                <h4>Record Post</h4>
-                <div class="mt-5">
-                <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-                  <div class="mb-3">
-                      <label for="title" class="form-label">Title</label>
-                      <input type="text" class="form-control" id="title" name="title" placeholder="Title">
-                      <label for="caption" class="form-label">Caption*</label>
-                      <textarea class="form-control" id="caption" name="caption"></textarea>
-                      <label for="description" class="form-label">Describe Your Content</label>
-                      <textarea class="form-control" id="description" style="height:8rem" name="description"></textarea>
-                      <label for="status">Status</label>
-                      <select name="status" id="status" class="form-select" aria-label="Default select example">
-                        <option selected>Select visibility</option>
-                        <option value="public" selected>Public</option>
-                        <option value="private">Private</option>
-                    </select>
-                    <input type="file" class="form-control" id="mediaUpload" name="file">
-                  </div>
-
 <!-- work or fixing submit path -->
                   <!-- <label for="video-response">Video Response:</label>
                 <video id="vid2" controls></video> -->
@@ -53,12 +33,10 @@
                             <p id="message"></p>    
                 </div> -->
 <!-- this part -->
-                  <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-                </form>
-              </div>
-            </div>
+                 
 
     <div class="px-4  py-5 selfCapture-container-page">
+      <h3>RECORD Video</h3>
         <div class="recording-box-capture">
             <p>Press START to record directly from your device</p>
             <video muted id="video" autoplay></video>
@@ -67,25 +45,66 @@
                 <button class="btn" id="stop-btn" style="background:red"><i class="fa fa-stop-circle" style="font-size:24px" aria-hidden="true"> Stop</i></button> 
                 <p id="message"></p>    
             </div>
+            <div id=" form-container" style="display:none">
+              <form id="upload-form"> 
+                <label for="video-title">Title:</label>
+                <input type="text" id="video-title" name="title"><br><br>
+                <label for="video-description">Description:</label>
+                <textarea id="video-description" name="description"></textarea><br><br>
+                <label for="video-caption">Caption:</label>
+                <input type="text" id="video-caption" name="caption"><br><br>
+                <button type="submit" id="upload-button">Upload to Cloudinary</button>
+                <button id="download-button">Download Video</button>
+              </form>
+
+            </div>
             
             
 
-            <video id="vid2" controls></video> 
-            
-
+            <!-- <video id="vid2" controls></video> 
             <div class="btn-box">
                 <a class="btn"  id="upload_widget" class="cloudinary-button" style="background:blue"><i class="fa fa-upload" style="font-size:24px" aria-hidden="true"> Upload</i></a>
-            </div>
+            </div> -->
         </div>
     </div> 
 </main>
+
 <section id="uploadPageSec" class="px-4 py-5 my-5 text-center">
    <h1 class="display-5 fw-bold">Memwa UPLOAD</h1>
     <div class="col-lg-6 mx-auto">   
     <h5>Upload a Story to Memwa</h5> <p>You can upload videos, pictures, files and other moments from other sources</p>
-    <button id="upload_pop" class="cloudinary-button" style="background:blue" style="font-size:24px" aria-hidden="true"> Upload files</button>
+    </div>
+    <div>
+      <div class="px-4 col-4 mx-auto">
+      <h3>Single File Upload</h3>
+      <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+            <label for="caption" class="form-label">Caption*</label>
+            <textarea class="form-control" id="caption" name="caption"></textarea>
+            <label for="description" class="form-label">Describe Your Content</label>
+            <textarea class="form-control" id="description" style="height:8rem" name="description"></textarea>
+            <label for="status">Status</label>
+            <select name="status" id="status" class="form-select" aria-label="Default select example">
+              <option selected>Select visibility</option>
+              <option value="public" selected>Public</option>
+              <option value="private">Private</option>
+          </select>
+          <input type="file" class="form-control" id="mediaUpload" name="file">
+        </div>
+        <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+      </form>
+      </div>
+    </div>
+    <div>
+      <div class="px-4 col-4 mx-auto">
+        <h3>Bulk File Upload</h3>
+        <p>Upload more than one media file</p>
+        <button id="upload_pop" class="cloudinary-button" style="background:blue" style="font-size:24px" aria-hidden="true"> Upload files</button>
+      </div>
+    </div>
 </section>
-
 <div class="px-4 py-5 my-5 text-center">
     <a class="btn btn-info" href="/feed">Return to Feed</a>
     <a class="btn btn-info" href="/profile">Return to Profile</a>
