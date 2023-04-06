@@ -47,13 +47,20 @@
             </div>
             <div id=" form-container" style="display:none">
               <form id="upload-form"> 
-                <label for="video-title">Title:</label>
-                <input type="text" id="video-title" name="title"><br><br>
-                <label for="video-description">Description:</label>
-                <textarea id="video-description" name="description"></textarea><br><br>
-                <label for="video-caption">Caption:</label>
-                <input type="text" id="video-caption" name="caption"><br><br>
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+                <label for="caption" class="form-label">Caption*</label>
+                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <label for="description" class="form-label">Describe Your Content</label>
+                <textarea class="form-control" id="description" style="height:8rem" name="description"></textarea>
+                <label for="status">Status</label>
+                <select name="status" id="status" class="form-select" aria-label="Default select example">
+                  <option selected>Select visibility</option>
+                  <option value="public" selected>Public</option>
+                  <option value="private">Private</option>
+                </select>
                 <button type="submit" id="upload-button">Upload to Cloudinary</button>
+                <button type="button" onclick="uploadFile()">Upload</button>
                 <button id="download-button">Download Video</button>
               </form>
 
@@ -90,7 +97,7 @@
               <option selected>Select visibility</option>
               <option value="public" selected>Public</option>
               <option value="private">Private</option>
-          </select>
+            </select>
           <input type="file" class="form-control" id="mediaUpload" name="file">
         </div>
         <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
