@@ -32,5 +32,32 @@ module.exports = {
       console.log(err);
     }
   },
+  // POST /videos
+  captureVideo: async(req, res)=>{
+    try {
+      // Save the video file to Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        resource_type: 'video',
+      });
+  
+      // Create a new Video object to save to MongoDB
+      const video = new Video({
+        title: req.body.title,
+        description: req.body.description,
+        filename: req.file.filename,
+        cloudinaryPublicId: result.public_id,
+      });
+  
+      // Save the Video object to MongoDB
+      await video.save();
+  
+      res.status(201).json(video);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(err.message);
+    }
+
+
+  },
 };
 
