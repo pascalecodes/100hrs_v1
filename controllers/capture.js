@@ -59,5 +59,38 @@ module.exports = {
 
 
   },
-};
+  uploadVideo: async(req,res) =>{
+  try {
+    const { title, description, caption, user } = req.body;
+    const videoUrl = req.file.path;
+    //const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+    
+    // await Post.create({
+    //   title: req.body.title,
+    //   user: req.user.id,
+    //   media: result.secure_url,
+    //   cloudinaryId: result.public_id,
+    //   caption: req.body.caption,
+    //   description: req.body.description,
+    //   status: req.body.status,
+    //   likes: 0,
+  
+    const newVideo = new Video({
+      title,
+      description,
+      caption,
+      user,
+      videoUrl,
+    });
+    // console.log("Post has been added!");
+    // res.redirect("/profile");
+    await newVideo.save()
+    res.status(201).json({success: true, videoUrl})
+
+  } catch (err) {
+    console.log(err);
+    res.render('error/500')
+  }
+}
+}
 
