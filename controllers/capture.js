@@ -1,6 +1,7 @@
 require('dotenv').config();
 const cloudinary = require("../middleware/cloudinary");
 const Capture = require("../models/Post");
+const path = require('path')
 
 
 module.exports = {
@@ -43,9 +44,14 @@ module.exports = {
       // Create a new Video object to save to MongoDB
       const video = new Video({
         title: req.body.title,
+        user: req.user.id,
         description: req.body.description,
         filename: req.file.filename,
-        cloudinaryPublicId: result.public_id,
+        cloudinaryId: result.public_id,
+        media: result.secure_url,
+        caption: req.body.caption,
+        status: req.body.status,
+        likes: 0,
       });
   
       // Save the Video object to MongoDB
@@ -61,9 +67,9 @@ module.exports = {
   },
   uploadVideo: async(req,res) =>{
   try {
-    const { title, description, caption, user } = req.body;
-    const videoUrl = req.file.path;
-    //const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+    // const { title, description, caption, user } = req.body;
+    // const videoUrl = req.file.path;
+    const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
     
     // await Post.create({
     //   title: req.body.title,
@@ -75,12 +81,23 @@ module.exports = {
     //   status: req.body.status,
     //   likes: 0,
   
+    // const newVideo = new Video({
+    //   title,
+    //   description,
+    //   caption,
+    //   user,
+    //   videoUrl,
+    // });
     const newVideo = new Video({
-      title,
-      description,
-      caption,
-      user,
-      videoUrl,
+      title: req.body.title,
+      user: req.user.id,
+      description: req.body.description,
+      filename: req.file.filename,
+      cloudinaryId: result.public_id,
+      media: result.secure_url,
+      caption: req.body.caption,
+      status: req.body.status,
+      likes: 0,
     });
     // console.log("Post has been added!");
     // res.redirect("/profile");
