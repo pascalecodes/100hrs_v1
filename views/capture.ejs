@@ -38,15 +38,17 @@
     <div class="px-4  py-5 selfCapture-container-page">
       <h3>RECORD Video</h3>
         <div class="recording-box-capture">
-            <!-- <p>Press START to record directly from your device</p>
+            <p>Press START to record directly from your device</p>
             <video muted id="video" autoplay></video>
             <div class="btn-box">  
                 <button type="button" class="btn" id="start-btn" style="background:green" data-bs-toggle="button"><i class="fa fa-video" style="font-size:24px" aria-hidden="true"> Start</i></button>
                 <button class="btn" id="stop-btn" style="background:red"><i class="fa fa-stop-circle" style="font-size:24px" aria-hidden="true"> Stop</i></button> 
-                <p id="message"></p>    
-            </div> -->
-            <!-- <div id=" form-container" style="display:none">
-              <form id="upload-form"> 
+                <p id="message"></p>   
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title"> 
+            </div>
+            <div id=" form-container" style="display:none">
+              <form id="uploadForm" style="display:none"> 
+                <input type="hidden" name="videoBlob" id="videoBlob">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Title">
                 <label for="caption" class="form-label">Caption*</label>
@@ -63,10 +65,15 @@
                 <button type="button" onclick="uploadFile()">Upload</button>
                 <button id="download-button">Download Video</button>
               </form>
-            </div> -->
+            </div>
+            <div id="successMessage" style="display:none">
+              <p>File successfully uploaded!</p>
+              <a id="downloadLink" href="#" download>Download</a>
+              <button id="done">Done</button>
+            </div>
             
             <!-- POE test -->
-            <video id="video" width="640" height="480" autoplay></video>
+            <!-- <video id="video" width="640" height="480" autoplay></video>
             <button id="startRecording">Record</button>
             <button id="stopRecording" disabled>Stop</button>
 
@@ -87,7 +94,7 @@
               <p>File successfully uploaded!</p>
               <a id="downloadLink" href="#" download>Download</a>
               <button id="done">Done</button>
-            </div>
+            </div> -->
 
             
 
@@ -143,7 +150,7 @@
 
 
     <script src="js/record.js" type="text/javascript"></script>
-    <script src="js/capture.js" type="text/javascript"></script>
+    <script src="js/capture.js"></script>
     <script src="https://unpkg.com/cloudinary-video-player@1.9.0/dist/cld-video-player.min.js" 
     type="text/javascript"></script>
      <!-- cloudinary upload widget -->
@@ -155,55 +162,5 @@
     </script>
     <script src="node_modules/cloudinary-video-player/dist/cld-video-player.min.js" 
     type="text/javascript"></script>
-    <!-- <script>
-        // Get access to camera and microphone
-        const mediaDevices = navigator.mediaDevices;
-        const constraints = { audio: true, video: true };
-        const videoElem = document.getElementById('video-response');
-        const streamPromise = mediaDevices.getUserMedia(constraints);
-      
-        // Usable stream
-        let stream;
-      
-        // MediaRecorder
-        let mediaRecorder;
-      
-        // Start recording
-        const startRecording = () => {
-          mediaRecorder = new MediaRecorder(stream);
-          const chunks = [];
-      
-          mediaRecorder.ondataavailable = (event) => {
-            chunks.push(event.data);
-          };
-      
-          mediaRecorder.onstop = () => {
-            const blob = new Blob(chunks, { type: 'video/mp4' });
-            // Use Axios or fetch to send the file to the server
-          };
-      
-          mediaRecorder.start();
-        };
-      
-        // Stop recording
-        const stopRecording = () => {
-          mediaRecorder.stop();
-        };
-      
-        // Set up video element source
-        streamPromise.then((usableStream) => {
-          stream = usableStream;
-          videoElem.srcObject = stream;
-        });
-      
-        // Add event listeners to buttons
-        const startBtn = document.getElementById('start-recording-button');
-        const stopBtn = document.getElementById('stop-recording-button');
-        const formElem = document.getElementById('video-form');
-      
-        startBtn.addEventListener('click', startRecording);
-    </script>
   
-  
-     -->
 

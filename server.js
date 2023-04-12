@@ -12,6 +12,7 @@ const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments"); // add new comment routes and route
 const findRoutes = require("./routes/find"); // add new find routes and route
+const captureRoutes = require('./routes/capture')
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -60,8 +61,8 @@ app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes); // add the use comment route to tell it where to go
 app.use("/search", findRoutes); // add find the routes
-app.use("/capture", mainRoutes); 
-app.use("/capture/videos", mainRoutes);
+//app.use("/capture", captureRoutes); 
+//app.use("/capture/videos", mainRoutes);
 
 // Default route
 app.get("*", (req, res) => {

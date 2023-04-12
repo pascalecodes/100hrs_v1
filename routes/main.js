@@ -24,7 +24,7 @@ router.post("/signup", authController.postSignup);
 router.get("/capture", ensureAuth, captureController.getCapture);
 router.get("/capture/upload", ensureAuth, captureController.getUpload)
 router.post("/capture/upload", ensureAuth, captureController.uploadFile)
-router.post("/capture/videos", upload.single("file"), captureController.uploadVideo)
+// router.post("/capture/videos", upload.single("file"), captureController.uploadVideo)
 //router.get("/find", ensureAuth, findController.getFind)
 router.get("/find", ensureAuth, findController.findPost)
 router.post("/find", ensureAuth, findController.findPost)

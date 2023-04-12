@@ -1,5 +1,10 @@
 // document.getElementById('record-link').onclick= function ()
 
+// const successMessage = document.getElementById('successMessage');
+// const downloadLink = document.getElementById('downloadLink');
+// const doneButton = document.getElementById('done');
+
+
 window.onload = function () {
     const parts =[];
     let mediaRecorder;
@@ -7,24 +12,30 @@ window.onload = function () {
         document.getElementById('video').srcObject  = stream;
         document.getElementById('start-btn').onclick = function () {
             document.querySelector('#message').innerText='Recording in progress...';
+            // const mimeType = 'video/webm;codecs=vp9,opus';
+            // const options = { mimeType };
             mediaRecorder = new MediaRecorder(stream);
 
-            mediaRecorder.start(100);
+            mediaRecorder.start(10);
             
             mediaRecorder.ondataavailable = function (e) {
                 parts.push(e.data);
             }
         }
     });
+    
 
     document.getElementById('stop-btn').onclick = function (){
         document.querySelector('#message').innerText='Recording STOPPED, upload recording to Memwa';
         mediaRecorder.stop();
         let vidSave = document.getElementById('vid2')
-        document.getElementById("demo").innerHTML = "I have changed!";
+        //document.getElementById('video').srcObject = null;
+        document.getElementById('uploadForm').style.display = 'block';
+        //document.getElementById("demo").innerHTML = "I have changed!";
         let blob = new Blob(parts, {
             type: 'video/mp4'
         });
+       // document.getElementById('videoBlob').value = URL.createObjectURL(blob);
         //parts=[];
         const  url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -40,5 +51,15 @@ window.onload = function () {
         a.click();
         vidSave.src = url;// create  a new location for file name also
 
+        // function playVideo(videoStream){ // as blob 
+
+        //     var video = document.querySelector('video');
+           
+        //     var videoUrl=window.URL.createObjectURL(videoStream.data);// blob.data gives actual data
+           
+        //     video.src = videoUrl;
+        //    }
     }
 }
+
+

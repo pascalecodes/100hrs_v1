@@ -2,6 +2,7 @@ require('dotenv').config();
 const cloudinary = require("../middleware/cloudinary");
 const Capture = require("../models/Post");
 const path = require('path')
+const Video = require('../models/Post')
 
 
 module.exports = {
@@ -66,11 +67,11 @@ module.exports = {
 
   },
   uploadVideo: async(req,res) =>{
-  try {
     // const { title, description, caption, user } = req.body;
     // const videoUrl = req.file.path;
-    const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
-    
+    // const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+    const { title, description, caption, user } = req.body;
+    //const videoUrl = req.file.path;
     // await Post.create({
     //   title: req.body.title,
     //   user: req.user.id,
@@ -81,33 +82,32 @@ module.exports = {
     //   status: req.body.status,
     //   likes: 0,
   
-    // const newVideo = new Video({
-    //   title,
-    //   description,
-    //   caption,
-    //   user,
-    //   videoUrl,
-    // });
     const newVideo = new Video({
-      title: req.body.title,
-      user: req.user.id,
-      description: req.body.description,
-      filename: req.file.filename,
-      cloudinaryId: result.public_id,
-      media: result.secure_url,
-      caption: req.body.caption,
-      status: req.body.status,
-      likes: 0,
+      title,
+      description,
+      caption,
+      user,
+      videoUrl,
     });
+    console.log(newVideo)
+    // const newVideo = new Video({
+    //   title: req.body.title,
+    //   user: req.user.id,
+    //   description: req.body.description,
+    //   filename: req.file.filename,
+    //   cloudinaryId: result.public_id,
+    //   media: result.secure_url,
+    //   caption: req.body.caption,
+    //   status: req.body.status,
+    //   likes: 0,
+    // });
+
     // console.log("Post has been added!");
     // res.redirect("/profile");
     await newVideo.save()
     res.status(201).json({success: true, videoUrl})
 
-  } catch (err) {
-    console.log(err);
-    res.render('error/500')
   }
-}
-}
+};
+
 
