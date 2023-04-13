@@ -128,7 +128,7 @@ async function uploadVideo(e) {
 
   const formData = new FormData(uploadForm);
 
-  const response = await fetch('/capture/upload', {
+  const response = await fetch('/upload', {
     method: 'POST',
     body: formData,
   });

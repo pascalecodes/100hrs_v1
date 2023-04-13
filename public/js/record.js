@@ -4,7 +4,6 @@
 // const downloadLink = document.getElementById('downloadLink');
 // const doneButton = document.getElementById('done');
 
-
 window.onload = function () {
     const parts =[];
     let mediaRecorder;
@@ -24,32 +23,37 @@ window.onload = function () {
         }
     });
     
-
+    const uploadForm = document.getElementById('uploadForm')
     document.getElementById('stop-btn').onclick = function (){
         document.querySelector('#message').innerText='Recording STOPPED, upload recording to Memwa';
         mediaRecorder.stop();
         let vidSave = document.getElementById('vid2')
-        //document.getElementById('video').srcObject = null;
-        document.getElementById('uploadForm').style.display = 'block';
+        document.getElementById('video').srcObject = null;
+        uploadForm.style.display = 'block';
         //document.getElementById("demo").innerHTML = "I have changed!";
         let blob = new Blob(parts, {
-            type: 'video/mp4'
+            type: 'video/webm'
         });
-       // document.getElementById('videoBlob').value = URL.createObjectURL(blob);
+       document.getElementById('videoBlob').value = URL.createObjectURL(blob);
         //parts=[];
-        const  url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        //const title= document.querySelector('#title').value
-        let fileName = document.getElementById('title').value
-        document.body.appendChild(a);
-        a.style = 'display: none';
-        a.href = url;
-        //a.download = vidSave.src;
-        a.download = `${fileName}.mp4`;
-        // 
-        // a.download = fileName
-        a.click();
-        vidSave.src = url;// create  a new location for file name also
+        
+        // const  url = URL.createObjectURL(blob);
+        // const a = document.createElement('a');
+        
+        // //const title= document.querySelector('#title').value
+        
+        // let fileName = document.getElementById('title').value
+        // document.body.appendChild(a);
+        // a.style = 'display: none';
+        // a.href = url;
+        
+        // //a.download = vidSave.src;
+        
+        // a.download = `${fileName}.webm`;
+        // // 
+        // // a.download = fileName
+        // a.click();
+        //vidSave.src = url;// create  a new location for file name also
 
         // function playVideo(videoStream){ // as blob 
 
@@ -61,5 +65,26 @@ window.onload = function () {
         //    }
     }
 }
+
+document.getElementById('uploadForm').addEventListener('submit', uploadVideo);
+document.getElementById('done').addEventListener('click', () => {location.reload();});
+    
+    async function uploadVideo(e) {
+        e.preventDefault();
+      
+        const formData = new FormData(uploadForm);
+      
+        const response = await fetch('/capture/upload', {
+          method: 'POST',
+          body: formData,
+        });
+      
+        if (response.ok) {
+          const data = await response.json();
+          uploadForm.style.display = 'none';
+          successMessage.style.display = 'block';
+          downloadLink.href = data.videoUrl;
+        }
+      }
 
 

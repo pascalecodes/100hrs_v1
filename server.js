@@ -61,7 +61,7 @@ app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 app.use("/comment", commentRoutes); // add the use comment route to tell it where to go
 app.use("/search", findRoutes); // add find the routes
-//app.use("/capture", captureRoutes); 
+app.use("/capture", captureRoutes); 
 //app.use("/capture/videos", mainRoutes);
 
 // Default route

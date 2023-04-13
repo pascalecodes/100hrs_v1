@@ -71,7 +71,7 @@ module.exports = {
     // const videoUrl = req.file.path;
     // const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
     const { title, description, caption, user } = req.body;
-    //const videoUrl = req.file.path;
+    const videoUrl = req.file.path;
     // await Post.create({
     //   title: req.body.title,
     //   user: req.user.id,
