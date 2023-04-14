@@ -44,12 +44,13 @@
                 <button type="button" class="btn" id="start-btn" style="background:green" data-bs-toggle="button"><i class="fa fa-video" style="font-size:24px" aria-hidden="true"> Start</i></button>
                 <button class="btn" id="stop-btn" style="background:red"><i class="fa fa-stop-circle" style="font-size:24px" aria-hidden="true"> Stop</i></button> 
                 <p id="message"></p>   
-                <!-- <input type="text" class="form-control" id="title" name="title" placeholder="Title">  -->
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title"> 
             </div>
             <div id=" form-container">
-              <form id="uploadForm" style="display:none"> 
+              <form  method="POST" action="/post/createPost" enctype="multipart/form-data" id="uploadForm" style="display:none"> 
                 <!-- <input type="file" class="form-control" id="mediaUpload" name="file"> -->
-                <input type="hidden" name="videoBlob" id="videoBlob">
+                <!-- <input type="hidden" name="videoBlob" id="videoBlob"> -->
+                <input type="hidden" name="videoBlob" id="videoBlob" >
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Title">
                 <label for="caption" class="form-label">Caption*</label>
@@ -65,7 +66,9 @@
                 <!-- <button type="submit" id="upload-button">Upload to Cloudinary</button> -->
                 <!-- <button type="button" onclick="uploadFile()">Upload</button> -->
                 <!-- <button id="download-button">Download Video</button> -->
-
+                <!-- <label for="video">Video</label>
+                <input type="file" name="videoBlob" id="videoBlob" /><br /> -->
+                <input type="file" class="form-control" id="mediaUpload" name="file">
                 <button type="submit">Upload</button>
               </form>
             </div>

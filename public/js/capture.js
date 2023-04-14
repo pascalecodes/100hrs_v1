@@ -88,7 +88,7 @@ const downloadLink = document.getElementById('downloadLink');
 const doneButton = document.getElementById('done');
 
 startButton.addEventListener('click', startRecording);
-//stopButton.addEventListener('click', stopRecording);
+stopButton.addEventListener('click', stopRecording);
 uploadForm.addEventListener('submit', uploadVideo);
 doneButton.addEventListener('click', () => {
   location.reload();
@@ -98,6 +98,7 @@ async function startRecording() {
   startButton.disabled = true;
   stopButton.disabled = false;
 
+ 
   const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   videoElement.srcObject = stream;
 

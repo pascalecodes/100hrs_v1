@@ -14,8 +14,8 @@ const storage = new CloudinaryStorage({
     public_id: (req, file) => req.body.title,
   },
 });
-
-const upload = multer({ storage: storage });
+const upload = multer({ dest: 'uploads/' });
+//const upload = multer({ storage: storage });
 
 router.get("/", ensureAuth, captureController.getCapture);
 //router.get("/upload", ensureAuth, captureController.getUpload)
