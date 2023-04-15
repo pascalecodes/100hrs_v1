@@ -109,10 +109,19 @@ window.onload = function () {
         }
     });
 
+     const uploadForm = document.getElementById('uploadForm')
+
     document.getElementById('stop-btn').onclick = function (){
         document.querySelector('#message').innerText='Recording STOPPED, upload recording to Memwa';
+        mediaRecorder.onstop = (event) => {
+            console.log('Recoorder stopped:', event)
+            uploadForm.style.display = 'block';
+            }
+
         mediaRecorder.stop();
+    
         let vidSave = document.getElementById('vid2')
+        
         //document.getElementById("demo").innerHTML = "I have changed!";
         let blob = new Blob(parts, {
             type: 'video/webm'
@@ -127,10 +136,11 @@ window.onload = function () {
         a.href = url;
         //a.download = vidSave.src;
         a.download = `${fileName}.webm`;
+        console.log(blob.tempFilePath)
         // 
         // a.download = fileName
         a.click();
-        vidSave.src = url;// create  a new location for file name also
+        //vidSave.src = url;// create  a new location for file name also
 
     }
 }
