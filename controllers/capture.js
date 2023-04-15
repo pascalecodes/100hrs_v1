@@ -115,6 +115,8 @@ module.exports = {
       // const result = await cloudinary.uploader.upload(req.file.path, {
       //   resource_type: "auto", folder: "memwa",
       // });
+      const video = req.files.video
+      const tempPath = req.files.video.tempFilePath
       const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
       
       await Post.create({
