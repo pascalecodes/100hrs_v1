@@ -126,6 +126,7 @@ window.onload = function () {
         let blob = new Blob(parts, {
             type: 'video/webm'
         });
+        document.getElementById('videoBlob').value= blob.arrayBuffer()
         //parts=[];
         const  url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -136,11 +137,12 @@ window.onload = function () {
         a.href = url;
         //a.download = vidSave.src;
         a.download = `${fileName}.webm`;
-        console.log(blob.tempFilePath)
+        console.log(videoBlob)
         // 
         // a.download = fileName
         a.click();
         //vidSave.src = url;// create  a new location for file name also
 
     }
+    
 }
