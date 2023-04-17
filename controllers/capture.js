@@ -4,6 +4,7 @@ const Capture = require("../models/Post");
 const path = require('path')
 const Video = require('../models/Post')
 const multer = require('multer')
+const Post = require('../models/Post')
 
 module.exports = {
   getCapture: (req, res) => {
@@ -115,8 +116,8 @@ module.exports = {
       // const result = await cloudinary.uploader.upload(req.file.path, {
       //   resource_type: "auto", folder: "memwa",
       // });
-      const video = req.files.video
-      const tempPath = req.files.video.tempFilePath
+      
+      //const tempPath = req.files.video.tempFilePath
       const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
       
       await Post.create({
@@ -137,6 +138,37 @@ module.exports = {
       console.log(err);
       res.render('error/500')
     }
+  },
+  // createVideoPost: async (req, res) => {
+  //   try {
+  //     //Upload image to cloudinary
+  //     // const result = await cloudinary.uploader.upload(req.file.path, {
+  //     //   resource_type: "auto", folder: "memwa",
+  //     // });
+  //     const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+      
+  //     await Post.create({
+  //       title: req.body.title,
+  //       user: req.user.id,
+  //       media: result.secure_url,
+  //       cloudinaryId: result.public_id,
+  //       caption: req.body.caption,
+  //       description: req.body.description,
+  //       status: req.body.status,
+  //       likes: 0,
+  //     });
+  //     console.log("VideoPost has been added!");
+  //     res.redirect("/capture");
+  //   } catch (err) {
+  //     console.log(err);
+  //     res.render('error/500')
+  //   }
+  // },
+  createVideoPost: async (req, res) =>{
+    const video = new Video({ url: req.file.path });
+    console.log(video)
+    await video.save();
+    res.sendStatus(200)
   },
 };
 
