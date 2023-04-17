@@ -47,10 +47,10 @@
                 <input type="text" class="form-control" id="title" name="title" placeholder="Title"> 
             </div>
             <div id=" form-container">
-              <form  method="POST" action="/post/createPost" enctype="multipart/form-data" id="uploadForm" style="display:none"> 
+              <form  method="POST" action="/capture/upload" enctype="multipart/form-data" id="uploadForm" style="display:none"> 
                 <!-- <input type="file" class="form-control" id="mediaUpload" name="file"> -->
                 <!-- <input type="hidden" name="videoBlob" id="videoBlob"> -->
-                <input type="hidden" name="videoBlob" id="videoBlob" >
+                <input type="file hidden" class="form-control" name="videoBlob" id="videoBlob" >
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Title">
                 <label for="caption" class="form-label">Caption*</label>
@@ -68,14 +68,14 @@
                 <!-- <button id="download-button">Download Video</button> -->
                 <!-- <label for="video">Video</label>
                 <input type="file" name="videoBlob" id="videoBlob" /><br /> -->
-                <input type="file" class="form-control" id="mediaUpload" name="file">
-                <button type="submit">Upload</button>
+                <!-- <input type="file" class="form-control" id="mediaUpload" name="file"> -->
+                <button type="submit" value="Upload">Upload</button>
               </form>
             </div>
             <div id="successMessage" style="display:none">
               <p>File successfully uploaded!</p>
               <a id="downloadLink" href="#" download>Download</a>
-              <button id="done">Done</button>
+              <button id="done" >Done</button>
             </div>
             
             <!-- POE test -->
