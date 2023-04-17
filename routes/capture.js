@@ -20,6 +20,6 @@ const upload = multer({ dest: 'uploads/' });
 router.get("/", ensureAuth, captureController.getCapture);
 //router.get("/upload", ensureAuth, captureController.getUpload)
 //router.post("/upload", ensureAuth, captureController.uploadFile)
-router.post("/upload", upload.single("videoBlob"), captureController.uploadVideo)
+router.post("/upload", upload.single("video"), captureController.createVideoPost)
 
 module.exports = router;
