@@ -184,7 +184,7 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       const blob = new Blob(recordedBlobs, { type: 'video/webm' });
       const formData = new FormData();
       formData.append('video', blob);
-      const response = await fetch('/capture/upload', { method: 'POST', body: formData });
+      const response = await fetch('upload', { method: 'POST', body: formData });
       alert('Video uploaded');
     });
   })
