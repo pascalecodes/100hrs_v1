@@ -155,7 +155,7 @@
 const video = document.getElementById('video');
 const startButton = document.getElementById('start-btn');
 const stopButton = document.getElementById('stop-btn');
-const uploadForm = document.getElementById('uploadForm')
+const uploadForm = document.getElemenById('uploadForm')
 let mediaRecorder;
 let recordedBlobs;
 
