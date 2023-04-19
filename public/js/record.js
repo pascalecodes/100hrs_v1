@@ -155,6 +155,7 @@
 const video = document.getElementById('video');
 const startButton = document.getElementById('start-btn');
 const stopButton = document.getElementById('stop-btn');
+const uploadForm = document.getElementById('uploadForm')
 let mediaRecorder;
 let recordedBlobs;
 
@@ -182,9 +183,12 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       startButton.disabled = false;
       stopButton.disabled = true;
       const blob = new Blob(recordedBlobs, { type: 'video/webm' });
+      const blobURL = URL.createObjectURL(blob)
+      console.log(blobURL)
+      uploadForm.style.display = 'block'
       const formData = new FormData();
       formData.append('video', blob);
-      const response = await fetch('upload', { method: 'POST', body: formData });
+      const response = await fetch('capture/upload', { method: 'POST', body: formData });
       alert('Video uploaded');
     });
   })

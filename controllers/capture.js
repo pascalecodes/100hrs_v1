@@ -1,10 +1,11 @@
 require('dotenv').config();
 const cloudinary = require("../middleware/cloudinary");
+const streamifier = require('streamifier')
 const Capture = require("../models/Post");
 const path = require('path')
 const Video = require('../models/Post')
-const multer = require('multer')
 const Post = require('../models/Post')
+const multer = require('multer');
 
 module.exports = {
   getCapture: (req, res) => {
@@ -164,11 +165,41 @@ module.exports = {
   //     res.render('error/500')
   //   }
   // },
-  createVideoPost: async (req, res) =>{
-    const video = new Video({ url: req.file.path });
-    console.log(video)
-    await video.save();
-    res.sendStatus(200)
+  createVideoPost: async (req, res, next) => {
+    //const video = new Video({ url: req.file.path });
+    let streamUpload = (req) => {
+      return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream(
+          (error,result) => {
+            if (result) {
+              resolve(result);
+            } else {
+              reject(error);
+            }
+          }
+        )
+        streamifier.createReadStream(req.file.buffer).pipe(stream);
+      });
+      
+    };
+    async function upload(req){
+      let result = await streamUpload(req);
+      console.log(result)
+    }
+    upload(req)
+
+    // const video = new Video({
+    //   title: req.body.title,
+    //   user: req.user.id,
+    //   media: videoUrl.secure_url,
+    //   cloudinaryId: videoUrl.public_id,
+    //   caption: req.body.caption,
+    //   description: req.body.description,
+    //   status: req.body.status,
+    //   likes: 0,
+    // });
+    // await video.save();
+    // res.sendStatus(200)
   },
 };
 
