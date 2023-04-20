@@ -93,103 +93,146 @@
 //       }
 
 // **********working version of recording and file download
-// window.onload = function () {
-//     let parts =[];
-//     let mediaRecorder;
-//     navigator.mediaDevices.getUserMedia({audio:true, video: true}).then(stream => {
-//         document.getElementById('video').srcObject  = stream;
-//         document.getElementById('start-btn').onclick = function () {
-//             document.querySelector('#message').innerText='Recording in progress...';
-//             mediaRecorder = new MediaRecorder(stream);
+window.onload = function () {
+const startButton = document.getElementById('start-btn');
+const stopButton = document.getElementById('stop-btn');
 
-//             mediaRecorder.start(100);
+    let parts =[];
+    let mediaRecorder;
+    navigator.mediaDevices.getUserMedia({audio:true, video: true}).then(stream => {
+        document.getElementById('video').srcObject  = stream;
+        document.getElementById('start-btn').onclick = function () {
+            document.querySelector('#message').innerText='Recording in progress...';
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.start(100);
+            startButton.disabled = true;
+            stopButton.disabled = false;
             
-//             mediaRecorder.ondataavailable = function (e) {
-//                 if(e.data && e.data.size > 0){
-//                     parts.push(e.data);
-//                 }
-//             }
-//         }
-//     });
+            mediaRecorder.ondataavailable = function (e) {
+                if(e.data && e.data.size > 0){
+                    parts.push(e.data);
+                }
+            }
+        }
+    })
+     let uploadForm = document.getElementById('uploadForm')
 
-//      let uploadForm = document.getElementById('uploadForm')
+    document.getElementById('stop-btn').onclick = function (){
+        document.querySelector('#message').innerText='Recording STOPPED, upload recording to Memwa';
+        mediaRecorder.onstop = (event) => {
+            console.log('Recoorder stopped:', event)
+            uploadForm.style.display = 'block';
+            document.getElementById('uploadForm').addEventListener('submit', uploadVideo)
 
-//     document.getElementById('stop-btn').onclick = function (){
-//         document.querySelector('#message').innerText='Recording STOPPED, upload recording to Memwa';
-//         mediaRecorder.onstop = (event) => {
-//             console.log('Recoorder stopped:', event)
-//             uploadForm.style.display = 'block';
-//             }
+            }
 
-//         mediaRecorder.stop();
+        mediaRecorder.stop();
+        startButton.disabled = false;
+        stopButton.disabled = true;
     
-//         let vidSave = document.getElementById('vid2')
+        let vidSave = document.getElementById('vid2')
         
-//         //document.getElementById("demo").innerHTML = "I have changed!";
-//         let blob = new Blob(parts, {
-//             type: 'video/webm'
-//         });
-//         document.getElementById('videoBlob').value= blob.arrayBuffer()
-//         //parts=[];
-//         const  url = URL.createObjectURL(blob);
-//         const a = document.createElement('a');
-//         //const title= document.querySelector('#title').value
-//         let fileName = document.getElementById('title').value
-//         document.body.appendChild(a);
-//         a.style = 'display: none';
-//         a.href = url;
-//         //a.download = vidSave.src;
-//         a.download = `${fileName}.webm`;
-//         console.log(videoBlob)
-//         // 
-//         // a.download = fileName
-//         a.click();
-//         //vidSave.src = url;// create  a new location for file name also
-
-//     }
+        //document.getElementById("demo").innerHTML = "I have changed!";
+        let blob = new Blob(parts, {
+            type: 'video/webm'
+        });
+        // document.getElementById('videoBlob').value= blob.arrayBuffer()
+        // //parts=[];
+        // const  url = URL.createObjectURL(blob);
+        // const a = document.createElement('a');
+        // //const title= document.querySelector('#title').value
+        // let fileName = document.getElementById('title').value
+        // document.body.appendChild(a);
+        // a.style = 'display: none';
+        // a.href = url;
+        // //a.download = vidSave.src;
+        // a.download = `${fileName}.webm`;
+        // console.log(videoBlob)
+        // // 
+        // // a.download = fileName
+        // a.click();
+        //vidSave.src = url;// create  a new location for file name also
+        async function uploadVideo(e) {
+            e.preventDefault();
+          
+            const formData = new FormData(uploadForm);
+            const  url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    //const title= document.querySelector('#title').value
+    let fileName = document.getElementById('title').value
+    document.body.appendChild(a);
+    a.style = 'display: none';
+    a.href = url;
+    //a.download = vidSave.src;
+    a.download = `${fileName}.webm`;
+    console.log(videoBlob)
+    // 
+    // a.download = fileName
+    a.click();
+          
+            const response = await fetch('/capture/upload', {
+              method: 'POST',
+              body: formData,
+            });
+          
+            if (response.ok) {
+              const data = await response.json();
+              uploadForm.style.display = 'none';
+              successMessage.style.display = 'block';
+              downloadLink.href = data.videoUrl;
+            }
+          }
+    }
     
-// }
+    
+}
 
 
 // ########new testing for script
-const video = document.getElementById('video');
-const startButton = document.getElementById('start-btn');
-const stopButton = document.getElementById('stop-btn');
-const uploadForm = document.getElemenById('uploadForm')
-let mediaRecorder;
-let recordedBlobs;
+// const video = document.getElementById('video');
+// const startButton = document.getElementById('start-btn');
+// const stopButton = document.getElementById('stop-btn');
+// //const uploadForm = document.getElemenById('uploadForm')
+// let mediaRecorder;
+// let recordedBlobs;
 
-navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-  .then(stream => {
-    video.srcObject = stream;
-    mediaRecorder = new MediaRecorder(stream);
-    recordedBlobs = [];
+// navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+//   .then(stream => {
+//     video.srcObject = stream;
+//     mediaRecorder = new MediaRecorder(stream);
+//     recordedBlobs = [];
 
-    mediaRecorder.ondataavailable = (event) => {
-      if (event.data && event.data.size > 0) {
-        recordedBlobs.push(event.data);
-      }
-    };
+//     mediaRecorder.ondataavailable = (event) => {
+//       if (event.data && event.data.size > 0) {
+//         recordedBlobs.push(event.data);
+//       }
+//     };
 
-    startButton.addEventListener('click', () => {
-      recordedBlobs = [];
-      mediaRecorder.start();
-      startButton.disabled = true;
-      stopButton.disabled = false;
-    });
+//     startButton.addEventListener('click', () => {
+//       recordedBlobs = [];
+//       mediaRecorder.start();
+//       startButton.disabled = true;
+//       stopButton.disabled = false;
+//     });
 
-    stopButton.addEventListener('click', async () => {
-      mediaRecorder.stop();
-      startButton.disabled = false;
-      stopButton.disabled = true;
-      const blob = new Blob(recordedBlobs, { type: 'video/webm' });
-      const blobURL = URL.createObjectURL(blob)
-      console.log(blobURL)
-      uploadForm.style.display = 'block'
-      const formData = new FormData();
-      formData.append('video', blob);
-      const response = await fetch('capture/upload', { method: 'POST', body: formData });
-      alert('Video uploaded');
-    });
-  })
-  .catch(error => console.error('getUserMedia() error', error));
+//     stopButton.addEventListener('click', async () => {
+//       mediaRecorder.stop();
+//       startButton.disabled = false;
+//       stopButton.disabled = true;
+//       const blob = new Blob(recordedBlobs, { type: 'video/webm' });
+//       console.log(blob)
+//       const formData = new FormData();
+//       formData.append('video', blob);
+//       console.log(URL.createObjectURL(blob))
+//       const a = document.createElement('a');
+//       let fileName = Date.now()
+//       a.style = 'display: none';
+//       a.href = URL.createObjectURL(blob)
+//       a.download = `${fileName}.webm`
+//       a.click()
+//     //   const response = await fetch('capture/upload', { method: 'POST', body: formData });
+//     //   alert('Video uploaded');
+//     });
+//   })
+//   .catch(error => console.error('getUserMedia() error', error));
