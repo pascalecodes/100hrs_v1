@@ -140,67 +140,67 @@ module.exports = {
       res.render('error/500')
     }
   },
-  // createVideoPost: async (req, res) => {
-  //   try {
-  //     //Upload image to cloudinary
-  //     // const result = await cloudinary.uploader.upload(req.file.path, {
-  //     //   resource_type: "auto", folder: "memwa",
-  //     // });
-  //     const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+  createVideoPost: async (req, res) => {
+    try {
+      //Upload image to cloudinary
+      // const result = await cloudinary.uploader.upload(req.file.path, {
+      //   resource_type: "auto", folder: "memwa",
+      // });
+      const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
       
-  //     await Post.create({
-  //       title: req.body.title,
-  //       user: req.user.id,
-  //       media: result.secure_url,
-  //       cloudinaryId: result.public_id,
-  //       caption: req.body.caption,
-  //       description: req.body.description,
-  //       status: req.body.status,
-  //       likes: 0,
-  //     });
-  //     console.log("VideoPost has been added!");
-  //     res.redirect("/capture");
-  //   } catch (err) {
-  //     console.log(err);
-  //     res.render('error/500')
-  //   }
-  // },
-  createVideoPost: async (req, res, next) => {
-    //const video = new Video({ url: req.file.path });
-    let streamUpload = (req) => {
-      return new Promise((resolve, reject) => {
-        let stream = cloudinary.uploader.upload_stream(
-          (error,result) => {
-            if (result) {
-              resolve(result);
-            } else {
-              reject(error);
-            }
-          }
-        )
-        streamifier.createReadStream(req.file.buffer).pipe(stream);
+      await Post.create({
+        title: req.body.title,
+        user: req.user.id,
+        media: result.secure_url,
+        cloudinaryId: result.public_id,
+        caption: req.body.caption,
+        description: req.body.description,
+        status: req.body.status,
+        likes: 0,
       });
-      
-    };
-    async function upload(req){
-      let result = await streamUpload(req);
-      console.log(result)
+      console.log("VideoPost has been added!");
+      res.redirect("/capture");
+    } catch (err) {
+      console.log(err);
+      res.render('error/500')
     }
-    upload(req)
-
-    // const video = new Video({
-    //   title: req.body.title,
-    //   user: req.user.id,
-    //   media: videoUrl.secure_url,
-    //   cloudinaryId: videoUrl.public_id,
-    //   caption: req.body.caption,
-    //   description: req.body.description,
-    //   status: req.body.status,
-    //   likes: 0,
-    // });
-    // await video.save();
-    // res.sendStatus(200)
   },
+  // createVideoPost: async (req, res, next) => {
+  //   //const video = new Video({ url: req.file.path });
+  //   let streamUpload = (req) => {
+  //     return new Promise((resolve, reject) => {
+  //       let stream = cloudinary.uploader.upload_stream(
+  //         (error,result) => {
+  //           if (result) {
+  //             resolve(result);
+  //           } else {
+  //             reject(error);
+  //           }
+  //         }
+  //       )
+  //       streamifier.createReadStream(req.file.buffer).pipe(stream);
+  //     });
+      
+  //   };
+  //   async function upload(req){
+  //     let result = await streamUpload(req);
+  //     console.log(result)
+  //   }
+  //   upload(req)
+
+  //   // const video = new Video({
+  //   //   title: req.body.title,
+  //   //   user: req.user.id,
+  //   //   media: videoUrl.secure_url,
+  //   //   cloudinaryId: videoUrl.public_id,
+  //   //   caption: req.body.caption,
+  //   //   description: req.body.description,
+  //   //   status: req.body.status,
+  //   //   likes: 0,
+  //   // });
+  //   // await video.save();
+  //   // res.sendStatus(200)
+  // },
 };
 
 
