@@ -23,4 +23,7 @@ module.exports = multer({
     }
     cb(null, true);
   },
+  filename: (req, file, cb)=>{
+    cb(null, file.originalname)
+  }
 });
