@@ -140,31 +140,31 @@ module.exports = {
       res.render('error/500')
     }
   },
-  createVideoPost: async (req, res) => {
-    try {
-      //Upload image to cloudinary
-      // const result = await cloudinary.uploader.upload(req.file.path, {
-      //   resource_type: "auto", folder: "memwa",
-      // });
-      const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+  // createVideoPost: async (req, res) => {
+  //   try {
+  //     //Upload image to cloudinary
+  //     // const result = await cloudinary.uploader.upload(req.file.path, {
+  //     //   resource_type: "auto", folder: "memwa",
+  //     // });
+  //     const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
       
-      await Post.create({
-        title: req.body.title,
-        user: req.user.id,
-        media: result.secure_url,
-        cloudinaryId: result.public_id,
-        caption: req.body.caption,
-        description: req.body.description,
-        status: req.body.status,
-        likes: 0,
-      });
-      console.log("VideoPost has been added!");
-      res.redirect("/capture");
-    } catch (err) {
-      console.log(err);
-      res.render('error/500')
-    }
-  },
+  //     await Post.create({
+  //       title: req.body.title,
+  //       user: req.user.id,
+  //       media: result.secure_url,
+  //       cloudinaryId: result.public_id,
+  //       caption: req.body.caption,
+  //       description: req.body.description,
+  //       status: req.body.status,
+  //       likes: 0,
+  //     });
+  //     console.log("VideoPost has been added!");
+  //     res.redirect("/capture");
+  //   } catch (err) {
+  //     console.log(err);
+  //     res.render('error/500')
+  //   }
+  // },
   // createVideoPost: async (req, res, next) => {
   //   //const video = new Video({ url: req.file.path });
   //   let streamUpload = (req) => {
@@ -201,6 +201,30 @@ module.exports = {
   //   // await video.save();
   //   // res.sendStatus(200)
   // },
+  createVideoPost: async (req, res) => {
+   
+      //Upload image to cloudinary
+      const { title, user, caption, description, status} = req.body;
+      const media = req.file.path;
+      console.log(`controller: output ${media}`)
+      //const cloudinaryId = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+     
+      
+      const newPost = new Post({
+        title,
+        user,
+        media,
+        cloudinaryId: media.public_id,
+        caption,
+        description,
+        status,
+        likes: 0,
+      });
+      console.log("VideoPost has been added!");
+      console.log(newPost)
+      await newPost.save();
+      res.status(201).json({success: true, media});
+  },
 };
 
 
