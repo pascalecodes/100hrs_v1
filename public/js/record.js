@@ -313,16 +313,21 @@ async function startRecording() {
       recordedBlobs.push(event.data);
     }
   };
-  mediaRecorder.start(10); // Collect 10ms of data
+  mediaRecorder.start(); // Collect 10ms of data
+
+  const videoFile= mediaRecorder.stream
+  console.log(videoFile)
+ 
 
   stopButton.onclick = () => {
     mediaRecorder.stop();
+    const track = videoFile.getVideoTracks()[0].getBlob()
+    console.log('track', track)
     videoElement.srcObject = null;
     uploadForm.style.display = 'block';
 
     const superBuffer = new Blob(recordedBlobs, { type: 'video/webm' });
     videoBlobInput.value = URL.createObjectURL(superBuffer);
-    
   };
 }
 async function uploadVideo(e) {
@@ -331,7 +336,7 @@ async function uploadVideo(e) {
     // const blob = new Blob(recordedBlobs, { type: 'video/webm' });
     // videoBlobInput.value = await blob.arrayBuffer();
   
-    const formData = new FormData(uploadForm);
+    const formData = new FormData();
   
     const response = await fetch('/capture/upload', {
       method: 'POST',

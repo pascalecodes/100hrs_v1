@@ -206,7 +206,7 @@ module.exports = {
       //Upload image to cloudinary
       const { title, user, caption, description, status} = req.body;
       const media = req.file.path;
-      console.log(`controller: output ${media}`)
+      console.log(req.body)
       //const cloudinaryId = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
      
       
@@ -227,4 +227,8 @@ module.exports = {
   },
 };
 
+//  // Save the post to MongoDB
+//  await post.save();
 
+//  // Redirect the user to the post page
+//  res.redirect('/posts/' + post._id);
