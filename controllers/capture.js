@@ -205,7 +205,7 @@ module.exports = {
    
       //Upload image to cloudinary
       const { title, user, caption, description, status} = req.body;
-      const media = req.file.path;
+      const media = videoBlob;
       console.log(req.body)
       //const cloudinaryId = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
      
