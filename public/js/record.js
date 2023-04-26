@@ -170,11 +170,14 @@ const stopButton = document.getElementById('stop-btn');
     a.href = url;
     //a.download = vidSave.src;
     a.download = `${fileName}.webm`;
+    const track = new File([blob], `${fileName}.webm`, {type:'video/webm'})
+    // document.getElementById('videoBlob').value = a
+    console.log('track', track)
     
     // 
     // a.download = fileName
     a.click();
-
+            formData.append('video', blob)
             const response = await fetch('/capture/upload', {
               method: 'POST',
               body: formData,
