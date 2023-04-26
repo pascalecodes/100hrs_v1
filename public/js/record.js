@@ -173,22 +173,23 @@ const stopButton = document.getElementById('stop-btn');
     const track = new File([blob], `${fileName}.webm`, {type:'video/webm'})
     // document.getElementById('videoBlob').value = a
     console.log('track', track)
+    console.log('videoBlob', videoBlob)
     
     // 
     // a.download = fileName
     a.click();
-            formData.append('video', blob)
-            const response = await fetch('/capture/upload', {
-              method: 'POST',
-              body: formData,
-            });
+            // formData.append('video', blob)
+            // const response = await fetch('/capture/upload', {
+            //   method: 'POST',
+            //   body: formData,
+            // });
           
-            if (response.ok) {
-              const data = await response.json();
-              uploadForm.style.display = 'none';
-              successMessage.style.display = 'block';
-              downloadLink.href = data.videoUrl;
-            }
+            // if (response.ok) {
+            //   const data = await response.json();
+            //   uploadForm.style.display = 'none';
+            //   successMessage.style.display = 'block';
+            //   downloadLink.href = data.videoUrl;
+            // }
           }
     }
     

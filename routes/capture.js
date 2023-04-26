@@ -5,7 +5,7 @@ const upload = require("../middleware/multer");
 const captureController = require("../controllers/capture");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const multer = require('multer');
-// const cloudinary = require('cloudinary').v2
+//const cloudinary = require('cloudinary').v2
 // const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 // const storage = new CloudinaryStorage({

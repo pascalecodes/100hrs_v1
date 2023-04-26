@@ -141,30 +141,55 @@ module.exports = {
     }
   },
   createVideoPost: async (req, res) => {
-   
+    try {
       //Upload image to cloudinary
-     
-      const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
-      //const { title, user, caption, description, status} = req.body;
-      const media = req.file.path;
-      console.log(result)
-      console.log(media)
-      
-      // const newPost = new Post({
-      //   title,
-      //   user,
-      //   media: media.public_id,
-      //   cloudinaryId: media.public_id,
-      //   caption,
-      //   description,
-      //   status,
-      //   likes: 0,
+      // const result = await cloudinary.uploader.upload(req.file.path, {
+      //   resource_type: "auto", folder: "memwa",
       // });
-      // console.log("VideoPost has been added!");
-      // console.log(newPost)
-      // await newPost.save();
-      res.status(201).json({success: true, media});
+      const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+      
+      await Video.create({
+        title: req.body.title,
+        user: req.user.id,
+        media: result.secure_url,
+        cloudinaryId: result.public_id,
+        caption: req.body.caption,
+        description: req.body.description,
+        status: req.body.status,
+        likes: 0,
+      });
+      console.log("VideoPost has been added!");
+      res.redirect("/capture");
+    } catch (err) {
+      console.log(err);
+      res.render('error/500')
+    }
   },
+  // createVideoPost: async (req, res) => {
+   
+  //     //Upload image to cloudinary
+     
+  //     const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
+  //     //const { title, user, caption, description, status} = req.body;
+  //     const media = req.file.path;
+  //     console.log(result)
+  //     console.log(media)
+      
+  //     // const newPost = new Post({
+  //     //   title,
+  //     //   user,
+  //     //   media: media.public_id,
+  //     //   cloudinaryId: media.public_id,
+  //     //   caption,
+  //     //   description,
+  //     //   status,
+  //     //   likes: 0,
+  //     // });
+  //     // console.log("VideoPost has been added!");
+  //     // console.log(newPost)
+  //     // await newPost.save();
+  //     res.status(201).json({success: true, media});
+  // },
 };
 
 //  // Save the post to MongoDB
