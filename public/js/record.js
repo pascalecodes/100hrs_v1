@@ -122,8 +122,8 @@ const stopButton = document.getElementById('stop-btn');
         document.querySelector('#message').innerText='Recording STOPPED, upload recording to Memwa';
         mediaRecorder.onstop = (event) => {
             console.log('Recoorder stopped:', event)
-            document.getElementById('videoBlob').value = URL.createObjectURL(blob)
-            console.log('the url', URL.createObjectURL(blob))
+            document.getElementById('videoBlob').value = `${URL.createObjectURL(blob)}.webm`
+            console.log('the url', `${URL.createObjectURL(blob)}.webm`)
             uploadForm.style.display = 'block';
             document.getElementById('uploadForm').addEventListener('submit', uploadVideo)
 
@@ -161,6 +161,7 @@ const stopButton = document.getElementById('stop-btn');
           
             const formData = new FormData(uploadForm);
             const  url = URL.createObjectURL(blob);
+            
     const a = document.createElement('a');
     //const title= document.querySelector('#title').value
     let fileName = document.getElementById('title').value
@@ -170,15 +171,18 @@ const stopButton = document.getElementById('stop-btn');
     a.href = url;
     //a.download = vidSave.src;
     a.download = `${fileName}.webm`;
+    // document.getElementById('videoBlob').value =  a.download
     const track = new File([blob], `${fileName}.webm`, {type:'video/webm'})
     // document.getElementById('videoBlob').value = a
     console.log('track', track)
-    console.log('videoBlob', videoBlob)
+    console.log('file', a.download, a.href)
+              successMessage.style.display = 'block';
+              downloadLink.href = url;
     
     // 
     // a.download = fileName
     a.click();
-            // formData.append('video', blob)
+            // formData.append('videoBlob', blob)
             // const response = await fetch('/capture/upload', {
             //   method: 'POST',
             //   body: formData,
