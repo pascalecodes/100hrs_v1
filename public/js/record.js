@@ -129,7 +129,7 @@ const stopButton = document.getElementById('stop-btn');
 
             }
 
-        mediaRecorder.stop();
+        mediaRecorder.stop(100);
         startButton.disabled = false;
         stopButton.disabled = true;
     
@@ -166,11 +166,14 @@ const stopButton = document.getElementById('stop-btn');
     //const title= document.querySelector('#title').value
     let fileName = document.getElementById('title').value
     console.log(fileName)
-    document.body.appendChild(a);
-    a.style = 'display: none';
-    a.href = url;
-    //a.download = vidSave.src;
-    a.download = `${fileName}.webm`;
+    // document.body.appendChild(a);
+    // a.style = 'display: none';
+    // a.href = url;
+
+    
+    // //a.download = vidSave.src;
+    // a.download = `${fileName}.webm`;
+    // console.log(a)
     // document.getElementById('videoBlob').value =  a.download
     const track = new File([blob], `${fileName}.webm`, {type:'video/webm'})
     // document.getElementById('videoBlob').value = a
@@ -178,6 +181,9 @@ const stopButton = document.getElementById('stop-btn');
     console.log('file', a.download, a.href)
               successMessage.style.display = 'block';
               downloadLink.href = url;
+              document.getElementById('downloadLink').textContent = `${fileName}.webm`;
+              document.getElementById('downloadLink').download = `${fileName}.webm`
+
     
     // 
     // a.download = fileName
