@@ -24,4 +24,5 @@ router.get("/", ensureAuth, captureController.getCapture);
 //router.post("/upload", ensureAuth, captureController.uploadFile)
 //router.post("/upload", upload.single("videoBlob"), captureController.createVideoPost)
 router.post("/upload", upload.single("videoBlob"), captureController.createVideoPost)
+router.post("/createPost", upload.single("file"), captureController.createPost)
 module.exports = router;

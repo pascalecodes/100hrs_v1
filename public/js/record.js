@@ -183,6 +183,10 @@ const stopButton = document.getElementById('stop-btn');
               downloadLink.href = url;
               document.getElementById('downloadLink').textContent = `${fileName}.webm`;
               document.getElementById('downloadLink').download = `${fileName}.webm`
+              const fileInput = document.getElementById('videoBlob');
+                fileInput.value =url;
+                console.log(url)
+              
 
     
     // 

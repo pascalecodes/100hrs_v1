@@ -48,8 +48,8 @@
             </div>
             <div id=" form-container">
               <!--***working <form  method="POST" action="/capture/upload" enctype="multipart/form-data" id="uploadForm" style="display:none">  -->
-                <form id="uploadForm" style="display:none "> 
-                <input type="file" class="form-control" id="mediaUpload" name="file">
+                <form action="/capture/createPost" enctype="multipart/form-data" method="POST" id="uploadForm" style="display:none "> 
+                <!-- <input type="hidden" class="form-control" id="mediaUpload" name="mediaUpload"> -->
                 <!-- <input type="hidden" name="videoBlob" id="videoBlob"> -->
                 <!-- <input type="hidden" class="form-control" name="videoBlob" id="videoBlob" > -->
                 <label for="title" class="form-label">Title</label>
@@ -64,7 +64,7 @@
                   <option value="public" selected>Public</option>
                   <option value="private">Private</option>
                 </select>
-                <input type="text" class="form-control" id="videoBlob" name="videoBlob">
+                <input type="hidden" class="form-control" id="videoBlob" name="file">
                 <!-- <button type="submit" id="upload-button">Upload to Cloudinary</button> -->
                 <!-- <button type="button" onclick="uploadFile()">Upload</button> -->
                 <!-- <button id="download-button">Download Video</button> -->

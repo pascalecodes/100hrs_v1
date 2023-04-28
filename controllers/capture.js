@@ -131,8 +131,8 @@ module.exports = {
         status: req.body.status,
         likes: 0,
       });
-      await newVideo.save()
-      res.status(201).json({success: true, media: result.secure_url})
+      // await newVideo.save()
+      // res.status(201).json({success: true, media: result.secure_url})
       console.log("Post has been added!");
       res.redirect("/capture");
     } catch (err) {
