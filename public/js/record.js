@@ -192,18 +192,19 @@ const stopButton = document.getElementById('stop-btn');
     // 
     // a.download = fileName
     a.click();
-            // formData.append('videoBlob', blob)
-            // const response = await fetch('/capture/upload', {
-            //   method: 'POST',
-            //   body: formData,
-            // });
+            formData.append('videoBlob', blob)
+            const response = await fetch('/capture/createPost', {
+              method: 'POST',
+              body: formData,
+              enctype: 'multipart/form-data',
+            });
           
-            // if (response.ok) {
-            //   const data = await response.json();
-            //   uploadForm.style.display = 'none';
-            //   successMessage.style.display = 'block';
-            //   downloadLink.href = data.videoUrl;
-            // }
+            if (response.ok) {
+              const data = await response.json();
+              uploadForm.style.display = 'none';
+              successMessage.style.display = 'block';
+              downloadLink.href = data.videoUrl;
+            }
           }
     }
     
