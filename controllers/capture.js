@@ -1,11 +1,10 @@
 require('dotenv').config();
 const cloudinary = require("../middleware/cloudinary");
-const streamifier = require('streamifier')
+//const streamifier = require('streamifier')
 const Capture = require("../models/Post");
 const path = require('path')
 const Video = require('../models/Post')
 const Post = require('../models/Post')
-const multer = require('multer');
 
 module.exports = {
   getCapture: (req, res) => {
@@ -117,7 +116,7 @@ module.exports = {
       // const result = await cloudinary.uploader.upload(req.file.path, {
       //   resource_type: "auto", folder: "memwa",
       // });
-      
+      console.log(req.file)
       //const tempPath = req.files.video.tempFilePath
       const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
       
@@ -133,6 +132,8 @@ module.exports = {
       });
       // await newVideo.save()
       // res.status(201).json({success: true, media: result.secure_url})
+      newVideo.save()
+      res.status(201).json({success: true, media: videoUrl.secure_url})
       console.log("Post has been added!");
       res.redirect("/capture");
     } catch (err) {

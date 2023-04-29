@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/auth");
 const upload = require("../middleware/multer");
 const captureController = require("../controllers/capture");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
-const multer = require('multer');
+//const multer = require('multer');
 //const cloudinary = require('cloudinary').v2
 // const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
@@ -24,5 +23,5 @@ router.get("/", ensureAuth, captureController.getCapture);
 //router.post("/upload", ensureAuth, captureController.uploadFile)
 //router.post("/upload", upload.single("videoBlob"), captureController.createVideoPost)
 router.post("/upload", upload.single("videoBlob"), captureController.createVideoPost)
-router.post("/createPost", upload.single("file"), captureController.createPost)
+router.post("/createPost", upload.single("videoBlob"), captureController.createPost)
 module.exports = router;

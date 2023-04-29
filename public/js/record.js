@@ -160,6 +160,7 @@ const stopButton = document.getElementById('stop-btn');
             e.preventDefault();
           
             const formData = new FormData(uploadForm);
+            //formData.append('videoBlob', blob)
             const  url = URL.createObjectURL(blob);
             
     const a = document.createElement('a');
@@ -179,7 +180,7 @@ const stopButton = document.getElementById('stop-btn');
     // document.getElementById('videoBlob').value = a
     console.log('track', track)
     console.log('file', a.download, a.href)
-              successMessage.style.display = 'block';
+            //   successMessage.style.display = 'block';
               downloadLink.href = url;
               document.getElementById('downloadLink').textContent = `${fileName}.webm`;
               document.getElementById('downloadLink').download = `${fileName}.webm`
@@ -192,7 +193,6 @@ const stopButton = document.getElementById('stop-btn');
     // 
     // a.download = fileName
     a.click();
-            formData.append('videoBlob', blob)
             const response = await fetch('/capture/createPost', {
               method: 'POST',
               body: formData,
