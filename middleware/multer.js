@@ -3,12 +3,12 @@ const path = require("path");
 
 module.exports = multer({
   storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + '-' + file.originalname);
-    }
+    // destination: function (req, file, cb) {
+    //   cb(null, 'uploads/');
+    // },
+    // filename: function (req, file, cb) {
+    //   cb(null, Date.now() + '-' + file.originalname);
+    // }
   }),
   // fileFilter: (req, file, cb) => {
   //   let ext = path.extname(file.originalname);
@@ -37,4 +37,7 @@ module.exports = multer({
     // }
     cb(null, true);
   },
+  filename: (req, file, cb)=>{
+    cb(null, file.originalname)
+  }
 });
