@@ -210,13 +210,23 @@ doneButton.addEventListener('click', () => {location.reload();});
               const data = await response.json();
               uploadForm.style.display = 'none';
               successMessage.style.display = 'block';
-              downloadLink.href = data.videoUrl; // changed from data.videoUrl
-            console.log('dataURL', data, videoUrl)
-            //   document.getElementById('downloadLink').textContent = `${fileName}.webm`;
-            //   document.getElementById('downloadLink').download = `${fileName}.webm`
+              downloadLink.href = data.media; // changed from data.videoUrl
+              //document.getElementById('downloadLink').textContent = `${fileName}.webm`;
+              //document.getElementById('downloadLink').download = `${fileName}.webm`
+            console.log('dataURL', data.media)
+          
               //const fileInput = document.getElementById('videoBlob');
                 //videoBlobInput.value =url;
                 console.log('fileurl', url)
+                console.log('dataOutput', data)
+
+               
+                //   downloadLink.href = url;
+                //   document.getElementById('downloadLink').textContent = `${fileName}.webm`;
+                //   document.getElementById('downloadLink').download = `${fileName}.webm`
+                //   const fileInput = document.getElementById('videoBlob');
+                //     fileInput.value =url;
+                //     console.log(url)
             }
           }
     }
