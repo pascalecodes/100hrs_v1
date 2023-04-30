@@ -98,6 +98,7 @@ const startButton = document.getElementById('start-btn');
 const stopButton = document.getElementById('stop-btn');
 const videoBlobInput = document.getElementById('videoBlob')
 const doneButton = document.getElementById('done');
+
 doneButton.addEventListener('click', () => {location.reload();});
     let parts =[];
     let mediaRecorder;
@@ -209,8 +210,8 @@ doneButton.addEventListener('click', () => {location.reload();});
               const data = await response.json();
               uploadForm.style.display = 'none';
               successMessage.style.display = 'block';
-              downloadLink.href = data.videoUrl;
-            //   console.log('dataURL', videoUrl)
+              downloadLink.href = data.videoUrl; // changed from data.videoUrl
+            console.log('dataURL', data, videoUrl)
             //   document.getElementById('downloadLink').textContent = `${fileName}.webm`;
             //   document.getElementById('downloadLink').download = `${fileName}.webm`
               //const fileInput = document.getElementById('videoBlob');
