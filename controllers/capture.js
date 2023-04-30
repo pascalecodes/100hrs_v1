@@ -119,7 +119,7 @@ module.exports = {
       console.log(req.file)
       //const tempPath = req.files.video.tempFilePath
       const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
-      const videoUrl = req.file.path
+      // const videoUrl = req.file.path
       
       await Post.create({
         title: req.body.title,
@@ -134,7 +134,7 @@ module.exports = {
       // await newVideo.save()
       // res.status(201).json({success: true, media: result.secure_url})
       //newVideo.save()
-      res.status(201).json({success: true, media: videoUrl.secure_url})
+      res.status(201).json({success: true, media: result.secure_url})
       console.log("Post has been added!");
       //res.redirect("/capture");
     } catch (err) {
