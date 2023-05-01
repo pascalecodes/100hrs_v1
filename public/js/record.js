@@ -210,9 +210,14 @@ doneButton.addEventListener('click', () => {location.reload();});
               const data = await response.json();
               uploadForm.style.display = 'none';
               successMessage.style.display = 'block';
-              downloadLink.href = data.media; // changed from data.videoUrl
-              //document.getElementById('downloadLink').textContent = `${fileName}.webm`;
-              //document.getElementById('downloadLink').download = `${fileName}.webm`
+
+              //not  using the url from cloudinary because it adds complexity
+              //downloadLink.href = data.media.replace(".mkv", ".mp4").replace("/upload/", "/upload/f_mp4/"); // changed from data.videoUrl
+              //downloadLink.href = data.media + "/video/upload/f_mp4/" + data.public_id + ".mp4"
+              //const downloadUrl = data.media.replace(".mkv", ".webm").replace("/upload/", "/upload/f_webm/")
+              downloadLink.href = url
+              document.getElementById('downloadLink').textContent = `${fileName}.webm`;
+              document.getElementById('downloadLink').download = `${fileName}.webm`
             console.log('dataURL', data.media)
           
               //const fileInput = document.getElementById('videoBlob');
