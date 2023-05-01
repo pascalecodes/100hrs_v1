@@ -1,4 +1,5 @@
 const cloudinary = require("../middleware/cloudinary");
+require('dotenv').config();
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 const path = require('path')
