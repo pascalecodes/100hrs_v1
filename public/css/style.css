@@ -91,6 +91,17 @@ h3 {
   margin: 0 auto;
   text-align: center;
 }
+#videoCarousel {
+  height: 600px;
+  overflow: hidden;
+}
+
+#videoPlaylist {
+  height: 600px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
 
 .carousel-inner .item {
   text-align: center;
