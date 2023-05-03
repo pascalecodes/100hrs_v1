@@ -17,52 +17,52 @@
   <!-- ########### testing version with dynamic library player -->
   <!-- The carousel container -->
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-9 mx-auto">
-        <div id="videoCarousel" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <% for(var i=0; i<detail.length; i++) { %>
-              <li data-target="#videoCarousel" data-slide-to="<%= i %>" <% if(i == 0) { %> class="active" <% } %> ></li>
-            <% } %>
-          </ol>
-          <div class="carousel-inner">
-            <% detail.forEach(function(video, index) { %>
-              <div class="item <% if(index == 0) { %> active <% } %> ">
-                <%if(video.ext == '.mkv' || video.ext =='.mp4'){ %>
-                  <video class="embed-responsive-item" controls width="800" height="600" poster="<%= video.poster %>">
-                    <source src="<%= video.url %>" type="video/webm">
-                    <source src="<%= video.url %>" type="video/mp4">
-                  </video>
-                <%}else {%>
-                  <center><image src="<%= video.url %>" type="jpg" class="embed-responsive-item" width="800" height="600" ></image></center>
-                <%}%>
-                <h3 class="video-title"><%= video.title %></h3>
-                <p><%= video.description %></p>
-              </div>
-            <% }); %>
-          </div>
-          <a class="left carousel-control" href="#videoCarousel"  data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="right carousel-control" href="#videoCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <h3>Playlist</h3>
-        <div id="videoPlaylist">
+  <div class="row">
+    <div class="col-md-9 mx-auto">
+      <div id="videoCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <% for(var i=0; i<detail.length; i++) { %>
+            <li data-target="#videoCarousel" data-slide-to="<%= i %>" <% if(i == 0) { %> class="active" <% } %> ></li>
+          <% } %>
+        </ol>
+        <div class="carousel-inner">
           <% detail.forEach(function(video, index) { %>
-            <a href="#videoCarousel" data-slide-to="<%= index %>" class="playlist-item <% if(index == 0) { %> active <% } %> ">
-              <h4><%= video.title %></h4>
-            </a>
+            <div class="item <% if(index == 0) { %> active <% } %> ">
+              <%if(video.ext == '.mkv' || video.ext =='.mp4'){ %>
+                <video class="embed-responsive-item" controls width="800" height="600" poster="<%= video.poster %>">
+                  <source src="<%= video.url %>" type="video/webm">
+                  <source src="<%= video.url %>" type="video/mp4">
+                </video>
+              <%}else {%>
+                <center><image src="<%= video.url %>" type="jpg" class="embed-responsive-item" width="800" height="600" ></image></center>
+              <%}%>
+              <h3 class="video-title"><%= video.title %></h3>
+              <p><%= video.description %></p>
+            </div>
           <% }); %>
         </div>
+        <a class="left carousel-control" href="#videoCarousel"  data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#videoCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h3>Playlist</h3>
+      <div id="videoPlaylist">
+        <% detail.forEach(function(video, index) { %>
+          <a href="#videoCarousel" data-slide-to="<%= index %>" class="playlist-item">
+            <h4><%= video.title %></h4>
+          </a>
+        <% }); %>
       </div>
     </div>
   </div>
+</div>
 </section>
 
 <script src="js/watch.js" type="text/javascript"></script>
