@@ -60,6 +60,11 @@ h3 {
   height: 60vh;
 }
 
+.multi-column {
+  columns: 4;
+  column-gap: 20px;
+}
+
 .playlist-item {
   display: block;
   padding: 5px;
@@ -115,5 +120,7 @@ h3 {
 .video-title {
   margin-top: 15px;
 }
+
+
 
 /* test */
