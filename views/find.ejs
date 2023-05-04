@@ -3,8 +3,8 @@
 <head>
   
   <title>Memwa FIND</title>
-  <link href="node_modules/cloudinary-video-player/dist/cld-video-player.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/cloudinary-video-player@1.9.0/dist/cld-video-player.min.css" rel="stylesheet">
+  <!-- <link href="node_modules/cloudinary-video-player/dist/cld-video-player.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/cloudinary-video-player@1.9.0/dist/cld-video-player.min.css" rel="stylesheet"> -->
 </head>
 <section class="searchArea">
     <div class="px-4 py-5 my-5 text-center">
@@ -21,19 +21,17 @@
                 <input placeholder="Search for stories....." type="text" id="search-input" class="bar" name="searchTerm" value="<%=searchTerm%>"/> -->
                 <form class="find" action="/find" method="GET">
                   <input type="text" placeholder="Search for stories or people"  id="search-input" class="form-control" name="searchTerm" value="<%=searchTerm%>"/>
-                <!-- <button type="submit">Find</button> -->
-                
+                <!-- <button type="submit">Find</button> -->  
               <button type="submit" class="btn btn-primary" >
                 <i class="fas fa-search"></i>
               </button>
               </form>
             </div>  
-           
           </div> 
-          
+        </div>
           <div class="form-outline col-lg-10 mx-auto">
             <% if(posts.length > 0 && searchTerm != undefined) {%>
-              <ul>
+              <ul class="multi-column">
                 <% posts.forEach(post => { %>
                 <a href="/post/<%= post.id%>"><li><%=post.title %></li></a>
               <% }) %>
@@ -43,10 +41,6 @@
               <% } %>
           </div>
       </div>
-      
-    </div>
-    <div>
-    </div>
     <!-- <div id="search-results"></div> -->
   
 </section>
