@@ -32,7 +32,7 @@
       <div class="row justify-content-center mt-5">
         <ul class="row list-unstyled">
           <% for(var i=0; i<posts.length; i++) {%>
-            <li class="col-6 justify-content-between mt-5">
+            <li class="col-3 justify-content-between mt-4">
               <!-- <a href="/post/<%= posts[i]._id%>">
                 <h5><%= posts[i].title%></h5>
                 <img class="img-fluid" src="<%= posts[i].media%>">
@@ -65,11 +65,6 @@
           <% } %>
           </ul>
     </div>
-
-
-      
-      
-
   </div>
 </section>
 
@@ -89,7 +84,6 @@
               
               <form class="search" action="/find" method="GET">
                 <input type="search" placeholder="Search for stories or people"  class="form-control" name="searchTerm" />
-              
 
               <!-- <label class="form-label" for="form1">Search</label> -->
             </div>
