@@ -12,15 +12,19 @@
           <!-- Profile Section -->
           <div>
               <h5>Profile Info</h5>
-              <img  src="<%= user.avatar ? user.avatar : "imgs/avatar.webp" %>" class="rounded-circle" style="width: 150px;"alt="Avatar" />
-              <input type="file" class="form-control" id="avatarUpload" name="avatar">
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <p><strong>First Name</strong>: <%= user.firstName %></p>
-              <p><strong>Last Name</strong>: <%= user.lastName %></p>
-              <p><strong>Bio</strong>: <%= user.bio %></p>
-              <a href="/edit" class="col-3 btn btn-secondary">Edit</a>
-              <a href="/logout" class="col-3 btn btn-danger">Logout</a>
+              <div class="profile-page">
+                <img  src="<%= user.avatar ? user.avatar : "imgs/avatar.webp" %>" class="rounded-circle" style="width: 150px;"alt="Profile Image" />
+              </div>
+              <div class="profile-page">
+                <input type="file" class="form-control" id="avatarUpload" name="avatar">
+                <p><strong>User Name</strong>: <%= user.userName %></p>
+                <p><strong>First Name</strong>: <%= user.firstName %></p>
+                <p><strong>Last Name</strong>: <%= user.lastName %></p>
+                <p><strong>Email</strong>: <%= user.email %></p>
+                <p><strong>Bio</strong>: <%= user.bio %></p>
+                <a href="/profile/edit" class="col-3 btn btn-secondary">Edit</a>
+                <a href="/logout" class="col-3 btn btn-danger">Logout</a>
+              </div>
           </div>
           <div class="mt-5">
             <!-- Move section to add stories file -->

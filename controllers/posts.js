@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 require('dotenv').config();
 const Post = require("../models/Post");
+const User = require("../models/User")
 const Comment = require("../models/Comment");
 const path = require('path')
 
@@ -10,6 +11,49 @@ module.exports = {
       const posts = await Post.find({ user: req.user.id });
       const ext= posts.map(post=> path.extname(post.media))
       res.render("profile.ejs", { posts: posts, user: req.user, ext: ext });
+    } catch (err) {
+      console.log(err);
+      res.render('error/500')
+    }
+  },
+  editProfile: async (req,res) => {
+    try {
+      //get current user from req
+      const userprofile = await User.find({user:req.user})
+      // const user = req.user;
+      res.render('editProfile.ejs', {user: userprofile})
+      //check if user is logged in
+      // if(!user){
+      //   res.send("You must be logged in to edit your profile.")
+      //   return;
+      // }
+      // //get the form data from the request
+      // const {
+      //   firstName,
+      //   lastName,
+      //   email,
+      //   bio,
+      //   avatar,
+      // } = req.body
+
+      // //update the user's profile info
+      // user.firstName = firstName;
+      // user.lastName = lastName;
+      // user.email = email;
+      // user.bio = bio;
+      // if(avatar) {
+      //   user.avatar = cloudinaryClient.upload.upload(avatar, {public_id: user.username,})
+      // }
+
+      // //save the user's profile information
+      // user.save((err, user) =>  {
+      //   if(err){
+      //     res.send(err)
+      //     return
+      //   }
+      //   res.send('Your profile has been updated')
+      // })
+
     } catch (err) {
       console.log(err);
       res.render('error/500')
