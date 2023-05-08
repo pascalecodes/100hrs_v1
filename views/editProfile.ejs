@@ -4,11 +4,12 @@
   <div class="col-lg-6 col-md-8 mx-auto">
     <h1>Edit Your Profile <%= user.userName %></h1>
     <form action="/update" method="post">
+        <img  src="/imgs/avatar.webp" class="rounded-circle" style="width: 150px;"alt="Profile Image" />
+        <p><strong>Avatar</strong>:<input type="file" name="avatar" value="<%= user.avatar %>"></p>
         <p><strong>First Name</strong>: <input type="text" name="firstName" value="<%= user.firstName %>"></p>
         <p><strong>Last Name</strong>:<input type="text" name="lastName" value="<%= user.lastName %>"></p>
         <p><strong>Email</strong>:<input type="text" name="email" value="<%= user.email %>"></p>
         <p><strong>Bio</strong>:<input type="text" name="bio" value="<%= user.bio %>"></p>
-        <p><strong>Avatar</strong>:<input type="file" name="avatar" value="<%= user.avatar %>"></p>
         <p></p><input type="submit" value="Update"></p>
       </form>
   </div>
