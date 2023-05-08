@@ -19,9 +19,10 @@ module.exports = {
   editProfile: async (req,res) => {
     try {
       //get current user from req
-      const userprofile = await User.find({user:req.user})
-      // const user = req.user;
-      res.render('editProfile.ejs', {user: userprofile})
+      const userprofile = await User.find({user:req.user.id})
+      const user = req.user;
+      console.log(user)
+      res.render('editProfile.ejs', {user: user})
       //check if user is logged in
       // if(!user){
       //   res.send("You must be logged in to edit your profile.")
