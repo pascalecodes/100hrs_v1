@@ -16,44 +16,80 @@ module.exports = {
       res.render('error/500')
     }
   },
+  uploadAvatar: async (req, res) => {
+    try {
+      const user = req.user
+      const result = await cloudinary.uploader.upload(req.file.path, {public_id: user.username,})
+      console.log(result)
+      user.avatar = result.public_id
+      //user.save()
+      console.log(user.avatar)
+     res.render('editProfile.ejs', {user: user})
+    } catch(err){
+      console.log(err)
+      res.render('error/500')
+    }
+
+  },
+  updateProfile: async (req,res) => {
+    // try {
+    //   const user= req.user;
+
+    //   user.firstName = req.body.firstName;
+    //   user.lastName = req.body.lastName;
+    //   user.email = req.body.email;
+    //   user.bio = req.body.bio;
+    //   user.save()
+    //   red.redirect('profile')
+
+    // } catch(err){
+    //   console.log(err)
+    //   res.render('error/500')
+    // }
+
+    //get current user from req
+    const user = await User.find({user:req.user.id})
+    console.log(user)
+    //check if user is logged in
+      if(!user){
+        res.send("You must be logged in to edit your profile.")
+        return;
+      }
+      //get the form data from the request
+      const {
+        firstName,
+        lastName,
+        email,
+        bio,
+        avatar,
+      } = req.body
+console.log(req.body)
+      //update the user's profile info
+      user.firstName = firstName;
+      user.lastName = lastName;
+      user.email = email;
+      user.bio = bio;
+      if(avatar) {
+        user.avatar = cloudinaryClient.upload.upload(avatar, {public_id: user.username,})
+      }
+console.log(user.avatar)
+      //save the user's profile information
+      user.save((err, user) =>  {
+        if(err){
+          res.send(err)
+          return
+        }
+        res.send('Your profile has been updated')
+      })
+
+  },
   editProfile: async (req,res) => {
     try {
       //get current user from req
       const userprofile = await User.find({user:req.user.id})
       const user = req.user;
-      console.log(user)
+      //console.log(user)
       res.render('editProfile.ejs', {user: user})
-      //check if user is logged in
-      // if(!user){
-      //   res.send("You must be logged in to edit your profile.")
-      //   return;
-      // }
-      // //get the form data from the request
-      // const {
-      //   firstName,
-      //   lastName,
-      //   email,
-      //   bio,
-      //   avatar,
-      // } = req.body
-
-      // //update the user's profile info
-      // user.firstName = firstName;
-      // user.lastName = lastName;
-      // user.email = email;
-      // user.bio = bio;
-      // if(avatar) {
-      //   user.avatar = cloudinaryClient.upload.upload(avatar, {public_id: user.username,})
-      // }
-
-      // //save the user's profile information
-      // user.save((err, user) =>  {
-      //   if(err){
-      //     res.send(err)
-      //     return
-      //   }
-      //   res.send('Your profile has been updated')
-      // })
 
     } catch (err) {
       console.log(err);
