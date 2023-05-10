@@ -3,18 +3,19 @@
 <section class="py-5 text-center container">
   <div class="col-lg-6 col-md-8 mx-auto">
     <h1>Edit Your Profile <%= user.userName %></h1>
-    <form id='avatarForm' action="/uploadAvatar" method="post" enctype="multipart/form-data">
+    <!-- <form id='avatarForm' action="/uploadAvatar" method="post" enctype="multipart/form-data">
         <input type="file" name="avatar" />
-        <input type="submit" value="Upload" />
-    </form>
+        <input type="submit" value="save" />
+    </form> -->
     <img id="avatar" src="/imgs/avatar.webp" class="rounded-circle justify-content-center" style="width: 150px;"alt="Profile Image" />
-    <form action="/updateProfile" method="post" enctype="multipart/form-data">
-        <p><strong>Avatar</strong>:<input type="file" name="avatar" value="<%= user.avatar %>"></p>
+    <form id='avatarForm' action="/updateProfile" method="post" enctype="multipart/form-data">
+        <p><strong>Avatar</strong>:<input type="file" name="avatar" value="<%= user.avatar %>"><input type="submit" value="save" /></p>
         <p><strong>First Name</strong>: <input type="text" name="firstName" value="<%= user.firstName %>"></p>
         <p><strong>Last Name</strong>:<input type="text" name="lastName" value="<%= user.lastName %>"></p>
         <p><strong>Email</strong>:<input type="text" name="email" value="<%= user.email %>"></p>
         <p><strong>Bio</strong>:<input type="text" name="bio" value="<%= user.bio %>"></p>
-        <p></p><input type="submit" value="Update"></p>
+        <!-- <p><input type="submit" value="Update"></p> -->
+        <p><button type="submit" class="btn btn-primary" value="Upload">Update</button></p>
       </form>
   </div>
 </section>
