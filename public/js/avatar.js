@@ -1,17 +1,30 @@
 const form = document.getElementById('avatarForm');
+const preview= document.getElementById('preview');
 const avatar = document.getElementById('avatar');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+preview.addEventListener('click', (event) => {
+    event.preventDefault();
+  
+    // Get the file object from the form
+    const file = form.querySelector('input[name="avatar"]').files[0];
+  
+    // Check if the file is an image
+    if (!file || !file.type.match(/^image\/.*/)) {
+      alert('Please select an image file.');
+      return;
+    }
 
-  // Get the file object from the form
-  const file = form.querySelector('input[name="avatar"]').files[0];
+// form.addEventListener('submit', (event) => {
+//   event.preventDefault();
 
-  // Check if the file is an image
-  if (!file || !file.type.match(/^image\/.*/)) {
-    alert('Please select an image file.');
-    return;
-  }
+//   // Get the file object from the form
+//   const file = form.querySelector('input[name="avatar"]').files[0];
+
+//   // Check if the file is an image
+//   if (!file || !file.type.match(/^image\/.*/)) {
+//     alert('Please select an image file.');
+//     return;
+//   }
 
   // Create a new Blob object from the file
   const blob = new Blob([file], {type: file.type});

@@ -17,18 +17,34 @@ module.exports = {
     }
   },
   uploadAvatar: async (req, res) => {
+    const {id} = req.params;
+    const {userName, email, firstName, lastName, avatar} = req.body;
     try {
-      const user = req.user
-      const result = await cloudinary.uploader.upload(req.file.path, {public_id: user.username,})
+      const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"})
       console.log(result)
-      user.avatar = result.public_id
-      //user.save()
-      console.log(user.avatar)
-     res.render('editProfile.ejs', {user: user})
-    } catch(err){
-      console.log(err)
+      const user = await User.findOne({ _id: id})
+      user.avatar = result.secure_url;
+      await user.save();
+      res.redirect("/profile");
+    } catch (err) {
+      console.log(err);
       res.render('error/500')
     }
+      
+    // try {
+    //   const user = req.user
+    //   const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"})
+    //   console.log(result)
+
+    //   user.avatar = result.public_id
+    //   //user.save()
+    //   console.log(user.avatar)
+    //  res.render('editProfile.ejs', {user: user})
+    // } catch(err){
+    //   console.log(err)
+    //   res.render('error/500')
+    // }
+    
 
   },
   updateProfile: async (req,res) => {

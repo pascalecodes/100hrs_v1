@@ -15,7 +15,7 @@ router.get("/home", ensureAuth, homeController.getHome);
 router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/profile/edit", postsController.editProfile)
 router.post("/uploadAvatar", upload.single("avatar"), postsController.uploadAvatar)
-router.post("updateProfile", upload.single("avatar"), postsController.updateProfile)
+//router.post("updateProfile", upload.single("avatar"), postsController.updateProfile)
 
 router.get("/feed", ensureAuth, postsController.getFeed);
 router.get("/login", authController.getLogin);
