@@ -64,7 +64,8 @@ module.exports = {
     // }
 
     //get current user from req
-    const user = await User.find({user:req.user.id})
+    //const user = await User.find({user:req.user.id})
+    const user = req.user
     console.log(user)
     //check if user is logged in
       if(!user){
@@ -80,6 +81,15 @@ module.exports = {
         avatar,
       } = req.body
 console.log(req.body)
+if (!firstName) {
+  res.send("First name is required.");
+  return;
+}
+
+if (!email) {
+  res.send("Email is required.");
+  return;
+}
       //update the user's profile info
       user.firstName = firstName;
       user.lastName = lastName;

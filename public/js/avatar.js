@@ -1,8 +1,9 @@
 const form = document.getElementById('avatarForm');
+const imageFile = document.getElementById('imageFile');
 const preview= document.getElementById('preview');
 const avatar = document.getElementById('avatar');
 
-preview.addEventListener('click', (event) => {
+imageFile.addEventListener('change', (event) => {
     event.preventDefault();
   
     // Get the file object from the form

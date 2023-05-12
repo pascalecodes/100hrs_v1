@@ -8,8 +8,9 @@
         <input type="submit" value="save" />
     </form> -->
     <img id="avatar" src="/imgs/avatar.webp" class="rounded-circle justify-content-center" style="width: 150px;"alt="Profile Image" />
-    <form id='avatarForm' action="/updateProfile" method="post" enctype="multipart/form-data">
-        <p><strong>Avatar</strong>:<input type="file" name="avatar" value="<%= user.avatar %>"><input type="submit" value="save" /></p>
+    <form id='avatarForm' action="/updateProfile" enctype="multipart/form-data" method="post">
+        <p><strong>Avatar</strong>:<input id="imageFile" type="file" name="avatar" value="<%= user.avatar %>">
+          <!-- <input type="submit" value="save" /></p> -->
         <p><strong>First Name</strong>: <input type="text" name="firstName" value="<%= user.firstName %>"></p>
         <p><strong>Last Name</strong>:<input type="text" name="lastName" value="<%= user.lastName %>"></p>
         <p><strong>Email</strong>:<input type="text" name="email" value="<%= user.email %>"></p>
