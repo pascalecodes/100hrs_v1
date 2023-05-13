@@ -65,7 +65,7 @@ module.exports = {
 
     //get current user from req
     //const user = await User.find({user:req.user.id})
-    const user = req.user
+    const user = await User.findById(req.user.id)
     console.log(user)
     //check if user is logged in
       if(!user){
@@ -81,6 +81,12 @@ module.exports = {
         avatar,
       } = req.body
 console.log(req.body)
+//check if first name is empty
+if (firstName === '') {
+  res.send('First name cannot be empty.');
+  return;
+}
+
 if (!firstName) {
   res.send("First name is required.");
   return;
@@ -91,7 +97,7 @@ if (!email) {
   return;
 }
       //update the user's profile info
-      user.firstName = firstName;
+      user.firstName = firstName ;
       user.lastName = lastName;
       user.email = email;
       user.bio = bio;
@@ -100,7 +106,7 @@ if (!email) {
       }
 console.log(user.avatar)
       //save the user's profile information
-      user.save((err, user) =>  {
+      await user.save((err, user) =>  {
         if(err){
           res.send(err)
           return
@@ -112,10 +118,10 @@ console.log(user.avatar)
   editProfile: async (req,res) => {
     try {
       //get current user from req
-      const userprofile = await User.find({user:req.user.id})
+      //const userprofile = await User.find({user: req.user.id})
       const user = req.user;
       //console.log(user)
-      res.render('editProfile.ejs', {user: user})
+      res.render('editProfile.ejs', {user})
 
     } catch (err) {
       console.log(err);
