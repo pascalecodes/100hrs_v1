@@ -65,62 +65,88 @@ module.exports = {
 
     //get current user from req
     //const user = await User.find({user:req.user.id})
-    const user = await User.findById(req.user.id)
+    //const post = await Post.findById(req.params.id).populate('user')
+    try {
+
+    let user = await User.findById(req.params.id).lean()
     console.log(user)
     //check if user is logged in
       if(!user){
         res.send("You must be logged in to edit your profile.")
         return;
       }
-      //get the form data from the request
-      const {
-        firstName,
-        lastName,
-        email,
-        bio,
-        avatar,
-      } = req.body
-console.log(req.body)
-//check if first name is empty
-if (firstName === '') {
-  res.send('First name cannot be empty.');
-  return;
-}
+      if(user != req.user.id){
+        res.redirect('/feed')
+      } else {
+        const {
+                  firstName,
+                  lastName,
+                  email,
+                  bio,
+                  avatar,
+                } = req.body
 
-if (!firstName) {
-  res.send("First name is required.");
-  return;
-}
+        user = await User.findByIdAndUpdate({_id: req.params.id}, req.body, { 
+          new: true,
+          runValidators: true,
+        })
 
-if (!email) {
-  res.send("Email is required.");
-  return;
-}
-      //update the user's profile info
-      user.firstName = firstName ;
-      user.lastName = lastName;
-      user.email = email;
-      user.bio = bio;
-      if(avatar) {
-        user.avatar = cloudinaryClient.upload.upload(avatar, {public_id: user.username,})
+        res.redirect('/profile')
       }
-console.log(user.avatar)
-      //save the user's profile information
-      await user.save((err, user) =>  {
-        if(err){
-          res.send(err)
-          return
-        }
-        res.send('Your profile has been updated')
-      })
+      //get the form data from the request
+//       const {
+//         firstName,
+//         lastName,
+//         email,
+//         bio,
+//         avatar,
+//       } = req.body
+// console.log(req.body)
+//check if first name is empty
+// if (firstName === '') {
+//   res.send('First name cannot be empty.');
+//   return;
+// }
 
+// if (!firstName) {
+//   res.send("First name is required.");
+//   return;
+// }
+
+// if (!email) {
+//   res.send("Email is required.");
+//   return;
+// }
+//       //update the user's profile info
+//       user.firstName = firstName ;
+//       user.lastName = lastName;
+//       user.email = email;
+//       user.bio = bio;
+//       if(avatar) {
+//         user.avatar = cloudinaryClient.upload.upload(avatar, {public_id: user.username,})
+//       }
+// console.log(user.avatar)
+//       //save the user's profile information
+//       await user.save((err, user) =>  {
+//         if(err){
+//           res.send(err)
+//           return
+//         }
+//         res.send('Your profile has been updated')
+//       })
+    } catch (err) {
+      console.error(err)
+      return req.render('error/500')
+    }
   },
   editProfile: async (req,res) => {
     try {
       //get current user from req
       //const userprofile = await User.find({user: req.user.id})
       const user = req.user;
+      //const user = await User.findOne({ _id: req.params.id,}).lean()
       //console.log(user)
+  
       res.render('editProfile.ejs', {user})
 
     } catch (err) {
