@@ -69,30 +69,36 @@ module.exports = {
     try {
 
     let user = await User.findById(req.params.id).lean()
-    console.log(user)
-    //check if user is logged in
-      if(!user){
+      console.log(user)
+      //check if user is logged in
+      if (!user) {
         res.send("You must be logged in to edit your profile.")
         return;
       }
-      if(user != req.user.id){
-        res.redirect('/feed')
-      } else {
+      // if(user != req.user.id){
+      //   res.redirect('/feed')
+      // } else {
         const {
-                  firstName,
-                  lastName,
-                  email,
-                  bio,
-                  avatar,
-                } = req.body
-
-        user = await User.findByIdAndUpdate({_id: req.params.id}, req.body, { 
-          new: true,
-          runValidators: true,
+          firstName,
+          lastName,
+          email,
+          bio,
+          avatar,
+        } = req.body
+        const update = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          bio: bio,
+          avatar: avatar,
+        }
+        await User.findByIdAndUpdate(req.params.id, update, {
+          upsert: true,
+          merge: true,
         })
 
         res.redirect('/profile')
-      }
+      // }
       //get the form data from the request
 //       const {
 //         firstName,
@@ -143,11 +149,28 @@ module.exports = {
     try {
       //get current user from req
       //const userprofile = await User.find({user: req.user.id})
-      const user = req.user;
+      
+      //const user = req.user;
       //const user = await User.findOne({ _id: req.params.id,}).lean()
       //console.log(user)
   
-      res.render('editProfile.ejs', {user})
+      // res.render('editProfile.ejs', {
+      //   user,
+      //   firstName: req.body.firstName,
+      //   lastName: req.body.lastName,
+      //   email: req.body.email,
+      //   bio: req.body.bio,
+      // })
+
+      const user = req.user;
+      res.render('editProfile.ejs', {
+        user,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        bio: req.body.bio,
+        avatar: req.body.avatar,
+      });
 
     } catch (err) {
       console.log(err);
