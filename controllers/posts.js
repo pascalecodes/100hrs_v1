@@ -85,19 +85,32 @@ module.exports = {
           bio,
           avatar,
         } = req.body
-        const update = {
+        const updateUser = {
           firstName: firstName,
           lastName: lastName,
           email: email,
           bio: bio,
           avatar: avatar,
         }
-        await User.findByIdAndUpdate(req.params.id, update, {
-          upsert: true,
-          merge: true,
-        })
+        // await User.findByIdAndUpdate(req.params.id, updateUser, {
+        //   upsert: true,
+        //   merge: true,
+        // })
+
+        User.updateOne({ _id: req.user._id }, updateUser, (err, updateUser) => {
+          if (err) {
+            // Return an error message.
+            res.render('editProfile.ejs', {
+              errors: err,
+              user: req.user,
+            });
+            return;
+          }
 
         res.redirect('/profile')
+      });
+  
+    
       // }
       //get the form data from the request
 //       const {

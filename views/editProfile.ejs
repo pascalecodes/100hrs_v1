@@ -9,7 +9,7 @@
     </form> -->
     <img id="avatar" src="/imgs/avatar.webp" class="rounded-circle justify-content-center" style="width: 150px;"alt="Profile Image" />
     <form id='avatarForm' action="/update/<%= encodeURIComponent(user._id) %>" enctype="multipart/form-data" method="PUT">
-      <!-- <input type="hidden" name="_method" value="PUT"> -->
+      <input type="hidden" name="_method" value="PUT">
         <p><strong>Avatar</strong>:<input id="imageFile" type="file" name="avatar" value="<%= user.avatar %>">
           <!-- <input type="submit" value="save" /></p> -->
         <p><strong>First Name</strong>: <input type="text" name="firstName" value="<%= user.firstName %>"></p>
