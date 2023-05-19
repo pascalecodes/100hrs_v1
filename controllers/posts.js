@@ -85,6 +85,7 @@ module.exports = {
           bio,
           avatar,
         } = req.body
+        console.log(req.body)
         const updateUser = {
           firstName: firstName,
           lastName: lastName,
@@ -92,11 +93,15 @@ module.exports = {
           bio: bio,
           avatar: avatar,
         }
+        console.log(updateUser)
         // await User.findByIdAndUpdate(req.params.id, updateUser, {
         //   upsert: true,
         //   merge: true,
         // })
-
+      //   user = await User.findOneAndUpdate({_id: req.params.id }, updateUser, {
+      //     new: true,
+      //     runValidators: true,
+      // })
         User.updateOne({ _id: req.user._id }, updateUser, (err, updateUser) => {
           if (err) {
             // Return an error message.
@@ -108,7 +113,7 @@ module.exports = {
           }
 
         res.redirect('/profile')
-      });
+        })
   
     
       // }
