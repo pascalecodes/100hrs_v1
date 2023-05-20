@@ -68,52 +68,53 @@ module.exports = {
     //const post = await Post.findById(req.params.id).populate('user')
     try {
 
-    let user = await User.findById(req.params.id).lean()
-      console.log(user)
-      //check if user is logged in
-      if (!user) {
-        res.send("You must be logged in to edit your profile.")
-        return;
-      }
+    // let user = await User.findById(req.params.id).lean()
+    //   console.log('logged user:', user)
+    //   //check if user is logged in
+    //   if (!user) {
+    //     res.send("You must be logged in to edit your profile.")
+    //     return;
+    //   }
+
       // if(user != req.user.id){
       //   res.redirect('/feed')
       // } else {
-        const {
-          firstName,
-          lastName,
-          email,
-          bio,
-          avatar,
-        } = req.body
-        console.log(req.body)
+        // const {
+        //   firstName,
+        //   lastName,
+        //   email,
+        //   bio,
+        //   //avatar,
+        // } = req.body
+        console.log('current info:', req.body)
         const updateUser = {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          bio: bio,
-          avatar: avatar,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          bio: req.body.bio,
+          //avatar: avatar,
         }
-        console.log(updateUser)
-        // await User.findByIdAndUpdate(req.params.id, updateUser, {
-        //   upsert: true,
-        //   merge: true,
-        // })
+        console.log('fields in form:', updateUser)
+        await User.findByIdAndUpdate(req.params.id, updateUser, {
+          upsert: true,
+          merge: true,
+        })
       //   user = await User.findOneAndUpdate({_id: req.params.id }, updateUser, {
       //     new: true,
       //     runValidators: true,
       // })
-        User.updateOne({ _id: req.user._id }, updateUser, (err, updateUser) => {
-          if (err) {
-            // Return an error message.
-            res.render('editProfile.ejs', {
-              errors: err,
-              user: req.user,
-            });
-            return;
-          }
+        // User.updateOne({ _id: req.user._id }, updateUser, (err, updateUser) => {
+        //   if (err) {
+        //     // Return an error message.
+        //     res.render('editProfile.ejs', {
+        //       errors: err,
+        //       user: req.user,
+        //     });
+        //     return;
+        //   }
 
         res.redirect('/profile')
-        })
+        // })
   
     
       // }
