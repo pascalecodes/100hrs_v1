@@ -67,7 +67,10 @@ module.exports = {
     //const user = await User.find({user:req.user.id})
     //const post = await Post.findById(req.params.id).populate('user')
     try {
-
+      console.log(req.params.id)
+      let user= req.user
+      let id = user._id
+      console.log(id)
     // let user = await User.findById(req.params.id).lean()
     //   console.log('logged user:', user)
     //   //check if user is logged in
@@ -79,26 +82,28 @@ module.exports = {
       // if(user != req.user.id){
       //   res.redirect('/feed')
       // } else {
-        // const {
-        //   firstName,
-        //   lastName,
-        //   email,
-        //   bio,
-        //   //avatar,
-        // } = req.body
+        let {
+          firstName,
+          lastName,
+          email,
+          bio,
+          //avatar,
+        } = req.body
         console.log('current info:', req.body)
-        const updateUser = {
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-          email: req.body.email,
-          bio: req.body.bio,
+      
+        let updateUser = {
+          firstName:  firstName= (req.body.firstName? req.body.firstName: req.user.firstName),
+          lastName:  lastName= (req.body.lastName? req.body.lastName: req.user.lastName),
+          email:  email= (req.body.email? req.body.email: req.user.email),
+          bio:  bio= (req.body.bio? req.body.bio: req.user.bio),
           //avatar: avatar,
         }
         console.log('fields in form:', updateUser)
-        await User.findByIdAndUpdate(req.params.id, updateUser, {
-          upsert: true,
-          merge: true,
-        })
+        user = await User.findByIdAndUpdate(id, { lastName, email }, { new: true });
+        // await User.findByIdAndUpdate(id, updateUser, {
+        //   upsert: true,
+        //   merge: true,
+        // })
       //   user = await User.findOneAndUpdate({_id: req.params.id }, updateUser, {
       //     new: true,
       //     runValidators: true,
@@ -113,7 +118,7 @@ module.exports = {
         //     return;
         //   }
 
-        res.redirect('/profile')
+        res.redirect('/profile/edit')
         // })
   
     
@@ -180,15 +185,16 @@ module.exports = {
       //   email: req.body.email,
       //   bio: req.body.bio,
       // })
-
       const user = req.user;
+      console.log(user)
+      console.log(user._id)
       res.render('editProfile.ejs', {
         user,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        bio: req.body.bio,
-        avatar: req.body.avatar,
+        // firstName: req.body.firstName,
+        // lastName: req.body.lastName,
+        // email: req.body.email,
+        // bio: req.body.bio,
+        // avatar: req.body.avatar,
       });
 
     } catch (err) {

@@ -8,7 +8,7 @@
         <input type="submit" value="save" />
     </form> -->
     <img id="avatar" src="/imgs/avatar.webp" class="rounded-circle justify-content-center" style="width: 150px;"alt="Profile Image" />
-    <form id='avatarForm' action="/update/<%= encodeURIComponent(user._id) %>" enctype="multipart/form-data" method="POST">
+    <form id='avatarForm' action="/profile/edit/<%= encodeURIComponent(user._id) %>" enctype="multipart/form-data" method="POST">
       <input type="hidden" name="_method" value="PATCH">
         <p><strong>Avatar</strong>:<input id="imageFile" type="file" name="avatar" value="<%= user.avatar %>">
           <!-- <input type="submit" value="save" /></p> -->
