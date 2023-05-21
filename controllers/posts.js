@@ -48,40 +48,11 @@ module.exports = {
 
   },
   updateProfile: async (req,res) => {
-    // try {
-    //   const user= req.user;
-
-    //   user.firstName = req.body.firstName;
-    //   user.lastName = req.body.lastName;
-    //   user.email = req.body.email;
-    //   user.bio = req.body.bio;
-    //   user.save()
-    //   red.redirect('profile')
-
-    // } catch(err){
-    //   console.log(err)
-    //   res.render('error/500')
-    // }
-
-    //get current user from req
-    //const user = await User.find({user:req.user.id})
-    //const post = await Post.findById(req.params.id).populate('user')
     try {
       console.log(req.params.id)
       let user= req.user
       let id = user._id
       console.log(id)
-    // let user = await User.findById(req.params.id).lean()
-    //   console.log('logged user:', user)
-    //   //check if user is logged in
-    //   if (!user) {
-    //     res.send("You must be logged in to edit your profile.")
-    //     return;
-    //   }
-
-      // if(user != req.user.id){
-      //   res.redirect('/feed')
-      // } else {
         let {
           firstName,
           lastName,
@@ -100,70 +71,8 @@ module.exports = {
         }
         console.log('fields in form:', updateUser)
         user = await User.findByIdAndUpdate(id, { lastName, email }, { new: true });
-        // await User.findByIdAndUpdate(id, updateUser, {
-        //   upsert: true,
-        //   merge: true,
-        // })
-      //   user = await User.findOneAndUpdate({_id: req.params.id }, updateUser, {
-      //     new: true,
-      //     runValidators: true,
-      // })
-        // User.updateOne({ _id: req.user._id }, updateUser, (err, updateUser) => {
-        //   if (err) {
-        //     // Return an error message.
-        //     res.render('editProfile.ejs', {
-        //       errors: err,
-        //       user: req.user,
-        //     });
-        //     return;
-        //   }
 
         res.redirect('/profile/edit')
-        // })
-  
-    
-      // }
-      //get the form data from the request
-//       const {
-//         firstName,
-//         lastName,
-//         email,
-//         bio,
-//         avatar,
-//       } = req.body
-// console.log(req.body)
-//check if first name is empty
-// if (firstName === '') {
-//   res.send('First name cannot be empty.');
-//   return;
-// }
-
-// if (!firstName) {
-//   res.send("First name is required.");
-//   return;
-// }
-
-// if (!email) {
-//   res.send("Email is required.");
-//   return;
-// }
-//       //update the user's profile info
-//       user.firstName = firstName ;
-//       user.lastName = lastName;
-//       user.email = email;
-//       user.bio = bio;
-//       if(avatar) {
-//         user.avatar = cloudinaryClient.upload.upload(avatar, {public_id: user.username,})
-//       }
-// console.log(user.avatar)
-//       //save the user's profile information
-//       await user.save((err, user) =>  {
-//         if(err){
-//           res.send(err)
-//           return
-//         }
-//         res.send('Your profile has been updated')
-//       })
     } catch (err) {
       console.error(err)
       return req.render('error/500')
@@ -171,30 +80,11 @@ module.exports = {
   },
   editProfile: async (req,res) => {
     try {
-      //get current user from req
-      //const userprofile = await User.find({user: req.user.id})
-      
-      //const user = req.user;
-      //const user = await User.findOne({ _id: req.params.id,}).lean()
-      //console.log(user)
-  
-      // res.render('editProfile.ejs', {
-      //   user,
-      //   firstName: req.body.firstName,
-      //   lastName: req.body.lastName,
-      //   email: req.body.email,
-      //   bio: req.body.bio,
-      // })
       const user = req.user;
       console.log(user)
       console.log(user._id)
       res.render('editProfile.ejs', {
         user,
-        // firstName: req.body.firstName,
-        // lastName: req.body.lastName,
-        // email: req.body.email,
-        // bio: req.body.bio,
-        // avatar: req.body.avatar,
       });
 
     } catch (err) {
