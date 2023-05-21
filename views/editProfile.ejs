@@ -3,21 +3,33 @@
 <section class="py-5 text-center container">
   <div class="col-lg-6 col-md-8 mx-auto">
     <h1>Edit Your Profile <%= user.userName %></h1>
-    <!-- <form id='avatarForm' action="/uploadAvatar" method="post" enctype="multipart/form-data">
-        <input type="file" name="avatar" />
-        <input type="submit" value="save" />
-    </form> -->
     <img id="avatar" src="/imgs/avatar.webp" class="rounded-circle justify-content-center" style="width: 150px;"alt="Profile Image" />
-    <form id='avatarForm' action="/profile/edit/<%= encodeURIComponent(user._id) %>" enctype="multipart/form-data" method="POST">
-      <input type="hidden" name="_method" value="PATCH">
-        <p><strong>Avatar</strong>:<input id="imageFile" type="file" name="avatar" value="<%= user.avatar %>">
+    <form id='avatarForm' action="/profile/edit/<%= user._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+      <!-- <input type="hidden" name="_method" value="PUT"> -->
+        <p><strong>Avatar</strong>:<input id="imageFile" type="file" name="avatar" placeholder="<%= user.avatar %>"/>
           <!-- <input type="submit" value="save" /></p> -->
-        <p><strong>First Name</strong>: <input type="text" name="firstName" value="<%= user.firstName %>"></p>
-        <p><strong>Last Name</strong>:<input type="text" name="lastName" value="<%= user.lastName %>"></p>
-        <p><strong>Email</strong>:<input type="text" name="email" value="<%= user.email %>"></p>
-        <p><strong>Bio</strong>:<input type="text" name="bio" value="<%= user.bio %>"></p>
-        <!-- <p><input type="submit" value="Update"></p> -->
-        <p><button type="submit" class="btn btn-primary" value="Upload">Update</button></p>
+        <!-- <p><strong>First Name</strong>: <input type="text" name="firstName" placeholder="<%= user.firstName %>"/></p>
+        <p><strong>Last Name</strong>:<input type="text" name="lastName" placeholder="<%= user.lastName %>"/></p>
+        <p><strong>Email</strong>:<input type="text" name="email" placeholder="<%= user.email %>"/></p>
+        <p><strong>Bio</strong>:<input type="text" name="bio" placeholder="<%= user.bio %>"/></p> -->
+
+        <div class="mb-3">
+          <label for="exampleInputFirstName" class="form-label">First Name</label>
+          <input type="firstName" class="form-control" id="exampleInputFirstName" name="firstName" placeholder="<%= user.firstName %>"/>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputLastName" class="form-label">Last Name</label>
+          <input type="lastName" class="form-control" id="exampleInputLastName" name="lastName"/>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="<%= user.email %>"/>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputBio class="form-label">Quick Bio</label>
+          <textarea rows="4" cols="80" class="form-control" id="exampleInputBio" name="bio" placeholder="<%= user.bio %>"></textarea>
+        </div>
+        <p><button type="submit" class="btn btn-primary" >Update</button></p>
     </form>
   </div>
 </section>
