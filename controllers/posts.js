@@ -70,9 +70,9 @@ module.exports = {
           //avatar: avatar,
         }
         console.log('fields in form:', updateUser)
-        user = await User.findByIdAndUpdate(id, { lastName, email }, { new: true });
+        user = await User.findByIdAndUpdate(id, { firstName, lastName, email, bio }, { new: true });
 
-        res.redirect('/profile/edit')
+        res.redirect('/profile')
     } catch (err) {
       console.error(err)
       return req.render('error/500')
