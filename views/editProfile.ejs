@@ -4,7 +4,7 @@
   <div class="col-lg-6 col-md-8 mx-auto">
     <h1>Edit Your Profile <%= user.userName %></h1>
     <img id="avatar" src="/imgs/avatar.webp" class="rounded-circle justify-content-center" style="width: 150px;"alt="Profile Image" />
-    <form id='avatarForm' action="/profile/edit/<%= user._id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+    <form id='avatarForm' method="POST" action="/profile/edit/<%= user._id %>?_method=PUT" enctype="application/x-www-form-urlencoded" >
       <!-- <input type="hidden" name="_method" value="PUT"> -->
         <p><strong>Avatar</strong>:<input id="imageFile" type="file" name="avatar" placeholder="<%= user.avatar %>"/>
           <!-- <input type="submit" value="save" /></p> -->
@@ -19,7 +19,7 @@
         </div>
         <div class="mb-3">
           <label for="exampleInputLastName" class="form-label">Last Name</label>
-          <input type="lastName" class="form-control" id="exampleInputLastName" name="lastName"/>
+          <input type="lastName" class="form-control" id="exampleInputLastName" name="lastName" placeholder="<%= user.lastName %>"/>
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -29,7 +29,7 @@
           <label for="exampleInputBio class="form-label">Quick Bio</label>
           <textarea rows="4" cols="80" class="form-control" id="exampleInputBio" name="bio" placeholder="<%= user.bio %>"></textarea>
         </div>
-        <p><button type="submit" class="btn btn-primary" >Update</button></p>
+        <p><button type="submit" class="btn btn-primary">Update</button></p>
     </form>
   </div>
 </section>
