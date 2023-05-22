@@ -17,20 +17,40 @@ module.exports = {
     }
   },
   uploadAvatar: async (req, res) => {
-    const {id} = req.params;
+    //const {id} = req.params.id;
+    let user = req.user
+    let id = req.params.id;
     const {userName, email, firstName, lastName, avatar} = req.body;
     try {
       const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"})
-      console.log(result)
-      const user = await User.findOne({ _id: id})
-      user.avatar = result.secure_url;
-      await user.save();
+      //console.log(result)
+      //let avatar = result.secure_url
+      //console.log(avatar)
+      //const user = await User.findOne({ _id: id})
+      user.avatar = result.secure_url
+      user.save()
+      //user = await User.findByIdAndUpdate(id, { avatar}, { new: true })
+      //user.avatar = result.secure_url;
+      //await user.save();
+
+      // try {
+      //     const user = req.user
+      //     const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"})
+      //     console.log(result)
+    
+      //     user.avatar = result.public_id
+      //     //user.save()
+      //     console.log(user.avatar)
       res.redirect("/profile");
     } catch (err) {
       console.log(err);
       res.render('error/500')
     }
-      
+    // await User.save({
+    //   avatar: result.secure_url,
+    // });
+    // console.log("Post has been added!");
+
     // try {
     //   const user = req.user
     //   const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"})
@@ -60,7 +80,7 @@ module.exports = {
           bio,
           //avatar,
         } = req.body
-        console.log('current info:', req.body)
+        //console.log('current info:', req.body)
       
         let updateUser = {
           firstName:  firstName= (req.body.firstName? req.body.firstName: req.user.firstName),
@@ -69,7 +89,7 @@ module.exports = {
           bio:  bio= (req.body.bio? req.body.bio: req.user.bio),
           //avatar: avatar,
         }
-        console.log('fields in form:', updateUser)
+        //console.log('fields in form:', updateUser)
         user = await User.findByIdAndUpdate(id, { firstName, lastName, email, bio }, { new: true });
 
         res.redirect('/profile')
@@ -81,8 +101,8 @@ module.exports = {
   editProfile: async (req,res) => {
     try {
       const user = req.user;
-      console.log(user)
-      console.log(user._id)
+      //console.log(user)
+      //console.log(user._id)
       res.render('editProfile.ejs', {
         user,
       });
