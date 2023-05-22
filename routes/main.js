@@ -14,8 +14,8 @@ router.get("/home", ensureAuth, homeController.getHome);
 
 router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/profile/edit", ensureAuth, postsController.editProfile)
-router.post("/uploadAvatar", upload.single("avatar"), postsController.uploadAvatar)
 router.put("/profile/edit/:id", ensureAuth, postsController.updateProfile)
+router.post("/uploadAvatar", upload.single("avatar"), postsController.uploadAvatar)
 
 router.get("/feed", ensureAuth, postsController.getFeed);
 router.get("/login", authController.getLogin);
