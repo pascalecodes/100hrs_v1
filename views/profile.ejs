@@ -13,13 +13,14 @@
           <div>
               <h5>Profile Info</h5>
               <div class="profile-page">
-                 <form id='avatarForm' action="/uploadAvatar" enctype="multipart/form-data" method="POST" >
-                    <input id="imageFile" type="file" name="avatar" />
-                    <!-- <input id="preview" type="submit" value="preview" /> -->
-                    <button type="submit" class="btn btn-primary" value="Upload">Save</button>
+              <!-- <img id="avatar" src="/imgs/avatar.webp" class="rounded-circle justify-content-center" style="width: 150px;"alt="Profile Image" /> -->
+                <img id="avatar" src="<%= user.avatar ? user.avatar : "/imgs/avatar.webp" %>" class="rounded-circle" style="width: 150px;"alt="Profile Image" />
+
+                <form id='avatarForm' action="/uploadAvatar" enctype="multipart/form-data" method="POST" >
+                  <input id="imageFile" type="file" name="avatar" />
+                  <!-- <input id="preview" type="submit" value="preview" /> -->
+                  <button type="submit" class="btn btn-primary" value="Upload">Save</button>
                 </form>
-              <img id="avatar" src="/imgs/avatar.webp" class="rounded-circle justify-content-center" style="width: 150px;"alt="Profile Image" />
-                <!-- <img  src="<%= user.avatar ? user.avatar : "imgs/avatar.webp" %>" class="rounded-circle" style="width: 150px;"alt="Profile Image" /> -->
               </div>
               <div class="profile-page">
                 <!-- <input type="file" class="form-control" id="avatarUpload" name="avatar"> -->
