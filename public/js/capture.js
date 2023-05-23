@@ -139,6 +139,6 @@ async function uploadVideo(e) {
     uploadForm.style.display = 'none';
     successMessage.style.display = 'block';
     downloadLink.href = data.videoUrl;
-    console.log(data.videoUrl)
+    //console.log(data.videoUrl)
   }
 }

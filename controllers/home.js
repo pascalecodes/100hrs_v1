@@ -21,7 +21,7 @@ module.exports = {
       // }
       const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
       const ext= posts.map(post=> path.extname(post.media))
-      console.log(ext)
+      // console.log(ext)
       //res.render("feed.ejs", { posts: posts });
       res.render("home.ejs", {posts: posts, user: req.user, ext: ext});
     } catch(err) {
@@ -57,9 +57,9 @@ module.exports = {
       // };
 
       //res.render("feed.ejs", { posts: posts });
-      console.log(posts)
-      console.log(ext)
-      console.log(playlist)
+      // console.log(posts)
+      // console.log(ext)
+      // console.log(playlist)
       // console.log(video_list)
       res.render("watch.ejs", {posts: posts, user: req.user, ext: req.ext, playlist: playlist});
     } catch(err) {
@@ -88,7 +88,7 @@ module.exports = {
             ext: path.extname(video.media)
           }); // add video objects to playlist array
         });
-      console.log( video_detail)
+      // console.log( video_detail)
       res.render('watch.ejs', {posts: posts, videos: video_list, detail: video_detail, user: req.user})
   
     } catch(err) {

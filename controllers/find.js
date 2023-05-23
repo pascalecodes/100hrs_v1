@@ -21,7 +21,7 @@ module.exports = {
       res.render('search.ejs', {results: [] })
       //const items: await ItemList.find()
       //res.render("find.ejs"/*,{itemList:items}*/)
-      console.log(`get results: ${results}`)
+      //console.log(`get results: ${results}`)
   },
   postSearch: async (req, res) => {
     const query = req.body.q
@@ -33,7 +33,7 @@ module.exports = {
           {description: {$regex: query, $options: 'i'}}
         ]
       })
-      console.log(query)
+      //console.log(query)
       res.render('search.ejs', {results})
       console.log(`post results: ${results}`)
 
@@ -55,14 +55,14 @@ module.exports = {
 
         //search for term in title, caption or description
         posts = await Post.find({$or: [{title: {$regex: searchTerm, $options: 'i'}}, {caption: {$regex: searchTerm, $options: 'i'}}, {description: {$regex: searchTerm, $options: 'i'}}]});
-        console.log(posts)
+        //console.log(posts)
       }else {
         posts = await Post.find()
       }
       
       res.render("find.ejs", { posts: posts, searchTerm: searchTerm});
     
-      console.log(`this is it: ${searchTerm}`)
+      //console.log(`this is it: ${searchTerm}`)
   
     } catch (err) {
       console.log(err);

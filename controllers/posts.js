@@ -72,7 +72,7 @@ module.exports = {
       console.log(req.params.id)
       let user= req.user
       let id = user._id
-      console.log(id)
+      // console.log(id)
         let {
           firstName,
           lastName,
@@ -91,7 +91,7 @@ module.exports = {
         }
         //console.log('fields in form:', updateUser)
         user = await User.findByIdAndUpdate(id, { firstName, lastName, email, bio }, { new: true });
-
+        console.log("Profile has been edited!");
         res.redirect('/profile')
     } catch (err) {
       console.error(err)
@@ -116,7 +116,7 @@ module.exports = {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
       const ext= posts.map(post=> path.extname(post.media))
-      console.log(ext)
+      // console.log(ext)
       res.render("feed.ejs", { posts: posts,  user: req.user, ext: ext});
     } catch (err) {
       console.log(err);

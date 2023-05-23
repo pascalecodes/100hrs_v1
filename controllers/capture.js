@@ -74,7 +74,7 @@ module.exports = {
      //const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
       // Save the video file to Cloudinary
       const { title, description, caption } = req.body
-      console.log(req.file)
+      //console.log(req.file)
     // const { title, description, caption, user } = req.body;
     const videoUrl = req.file.path;
     // const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});  
@@ -88,7 +88,8 @@ module.exports = {
       status: req.body.status,
       likes: 0,
     });
-    console.log(newVideo)
+    //console.log(newVideo)
+    
     // const newVideo = new Video({
     //   title: req.body.title,
     //   user: req.user.id,
@@ -116,7 +117,7 @@ module.exports = {
       // const result = await cloudinary.uploader.upload(req.file.path, {
       //   resource_type: "auto", folder: "memwa",
       // });
-      console.log(req.file)
+      //console.log(req.file)
       //const tempPath = req.files.video.tempFilePath
       const result = await cloudinary.uploader.upload(req.file.path, {resource_type: "auto"});
       // const videoUrl = req.file.path
