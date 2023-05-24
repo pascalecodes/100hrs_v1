@@ -7,6 +7,11 @@ h1{
 h3 {
   color: #817e7e
 }
+
+#watchSection h1 {
+  color: #3563E9; 
+}
+
 /* HERO CSS */
 @media (min-width: 992px) {
   .rounded-lg-3 { border-radius: .3rem; }
