@@ -37,6 +37,8 @@
                 <a href="/post/<%= post.id%>"><li><%=post.title %></li></a>
               <% }) %>
               </ul>
+              <%} else if(searchTerm == undefined) {%>
+                <!-- <h3 class="hidden">Enter a search</h3> -->
               <%}else {%>
                 <h3>No Results</h3>
               <% } %>
