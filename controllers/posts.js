@@ -114,10 +114,23 @@ module.exports = {
   },
   getFeed: async (req, res) => {
     try {
-      const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
+      //const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
+      const posts = await Post.find().sort({ createdAt: "desc" }).populate('user');
       const ext= posts.map(post=> path.extname(post.media))
-      // console.log(ext)
-      res.render("feed.ejs", { posts: posts,  user: req.user, ext: ext});
+      //console.log(posts.user.userName)
+
+      //group posts by username
+      const groupPosts = posts.reduce((acc, post) => {
+        if (!acc[post.user.userName]) {
+          acc[post.user.userName] = [];
+        }
+        acc[post.user.userName].push(post);
+        return acc;
+      }, {});
+      
+      //console.log(groupPosts);
+      
+      res.render("feed.ejs", { posts: posts,  user: req.user, ext: ext, groupPosts: groupPosts});
     } catch (err) {
       console.log(err);
       res.render('error/500')
