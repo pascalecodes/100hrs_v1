@@ -1,10 +1,15 @@
 <%- include('partials/log_header') -%>
 <!-- <%- include('partials/add_btn') -%> -->
 
-<h3>THIS IS A FEED PAGE</h3>
+<!-- <h3>THIS IS A FEED PAGE</h3> -->
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold">Memwa Story Feed</h1>
+
   <div class="container">
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
+    <% for (const [userName, posts] of Object.entries(groupPosts)) { %>
+      <h2 class="mt-5 justify-content-left">Posts by <%= userName %></h2>
         <% for(var i=0; i<posts.length; i++) {%>
           <li class="col-4 justify-content-between mt-5">
             <a href="/post/<%= posts[i]._id%>">
@@ -21,12 +26,13 @@
                   <img class="img-fluid" width="800" height="800" src="<%= posts[i].media%>" />
                 <%}%>
               <!-- <img class="img-fluid" src="<%= posts[i].media%>"> -->
-              <h5><%= posts[i].user.userName%></h5>
+              <!-- <h5><%= posts[i].user.userName%></h5> -->
               <h5>Likes: <%= posts[i].likes %></h5>
             </a>
           </li>
         <% } %>
         </ul>
+        <% } %>
     </div>
   </div>  
 
