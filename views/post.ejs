@@ -22,44 +22,45 @@
       
       <source src="<%= post.media%>" type="video/mp4" class="card-img-top" alt="<%= post.title%>" />
       </video> -->
-      <%if(ext == '.mkv'){ %>
+      <%if(ext == '.mkv' || ext == '.mp4' || ext == '.webm'){ %>
         <video
         id="demo-player"
         controls
         class="card-img-top cld-video-player">
         
-        <source src="<%= post.media%>" type="video/mp4" class="card-img-top" alt="<%= post.title%>" />
+        <source src="<%= post.media%>" type="video/webm" class="card-img-top" alt="<%= post.title%>" />
         </video>
         <%}else {%>
           <img class="img-fluid" src="<%= post.media%>" />
         <%}%>
 
-      <div class="row justify-content-center">
+      <div class="row justify-content-between">
         <form
           class="col-1"
           action="/post/likePost/<%= post.id %>?_method=PUT"
           method="POST"
         >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
+          <button class="btn btn-primary fa fa-heart" type="submit"></button> 
+          <h5>Likes: <%= post.likes %></h5> 
         </form>
         <h5>Posted by: <%= post.user.userName%></h5>
-        <h3 class="col-3">Likes: <%= post.likes %></h3>
-        <%if(post.user == user.id){ %>
-        <form
+       
+          <p><h5>Caption: <%= post.caption %></h5></p>
+        
+        
+        <%if(post.user.userName == user.userName){ %>
+        <!-- <form
           action="/post/deletePost/<%= post.id %>?_method=DELETE"
           method="POST"
-          class="col-3"
+          
         >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
+          <button class="btn btn-outline-danger fa fa-trash" type="submit"> Delete Post</button>
+        </form> -->
         <%}%>
       </div>
     </div> 
-    <div class="col-3 mt-5">
-      <p><h3><%= post.caption %></h3></p>
-    </div>
     <div class="mt-5">
-      <h5>Add a comment</h5>
+      <h6>Add a comment</h6>
       <form action="/comment/createComment/<%=post._id%>" method="POST">
         <div class="mb-3">
           <label for="comment" class="form-label"></label>
@@ -69,7 +70,7 @@
       </form>
     </div>
     <div class="mt-5">
-      <ul class="mt-5">
+      <ul class="mt-5 list-unstyled">
         <!-- add: username and delete button -->
         <% for(var i=0; i<comments.length; i++) {%>
           <li class="mt-5">
@@ -79,7 +80,7 @@
             action="/comment/deleteComment/<%= comments[i]._id %>/<%= post.id %>?_method=DELETE"
             method="POST"
           >
-            <button class="btn btn-outline-danger fa fa-trash" type="submit"> Delete</button>
+            <button class="btn btn-outline-danger fa fa-trash" type="submit"> Delete My Comment</button>
           </form>
           <% } %>
           </li>

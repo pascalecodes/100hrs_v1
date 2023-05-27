@@ -11,10 +11,10 @@
     <% for (const [userName, posts] of Object.entries(groupPosts)) { %>
       <h2 class="mt-5 justify-content-left">Posts by <%= userName %></h2>
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-4 justify-content-between mt-5">
+          <li class="col-4 justify-content-between mt-5 list-unstyled">
             <a href="/post/<%= posts[i]._id%>">
               <h5><%= posts[i].title%></h5>
-              <%if(ext[i] == '.mkv' || ext[i] == '.mp4'){ %>
+              <%if(ext[i] == '.mkv' || ext[i] == '.mp4' || ext[i] == '.webm'){ %>
                 <video
                 id="demo-player"
                 controls

@@ -112,7 +112,7 @@
                   <h5><%= posts[i].title%></h5>
                   <a href="/post/<%= posts[i]._id%>">
                     <!-- <img class="img-fluid" src="<%= posts[i].media%>"> -->
-                    <%if(ext[i] == '.mkv'){ %>
+                    <%if(ext[i] == '.mkv' ||ext == '.mkv'  || ext == '.webm'){ %>
                       <video
                       id="demo-player"
                       controls
