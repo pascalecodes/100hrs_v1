@@ -115,7 +115,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       //const posts = await Post.find().sort({ createdAt: "desc" }).populate('user').lean();
-      const posts = await Post.find().sort({ createdAt: "desc" }).populate('user');
+      const posts = await Post.find().sort({ likes: "desc" }).populate('user');
       const ext= posts.map(post=> path.extname(post.media))
       //console.log(posts.user.userName)
     

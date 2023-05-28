@@ -12,6 +12,7 @@
           <li class="col-4 justify-content-between mt-5">
             <a href="/post/<%= posts[i]._id%>">
               <h5><%= posts[i].title%></h5>
+            </a>
               <%if(ext[i] == '.mkv' || ext[i] == '.mp4' || ext[i]== '.webm'){ %>
                 <video
                 id="demo-player"
@@ -21,12 +22,10 @@
                 <source src="<%= posts[i].media%>" type="video/mp4" class="card-img-top" alt="<%= posts[i].title%>" />
                 </video>
                 <%}else {%>
-                  <img class="img-fluid" width="800" height="800" src="<%= posts[i].media%>" />
+                  <img class="img-fluid" width="800" height="900" src="<%= posts[i].media%>" />
                 <%}%>
-              <!-- <img class="img-fluid" src="<%= posts[i].media%>"> -->
               <h5><%= posts[i].user.userName%></h5>
               <h5>Likes: <%= posts[i].likes %></h5>
-            </a>
           </li>
         <% } %>
         </ul>
