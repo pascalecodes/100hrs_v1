@@ -14,7 +14,7 @@
           <li class="col-4 justify-content-between mt-5 list-unstyled">
             <a href="/post/<%= posts[i]._id%>">
               <h5><%= posts[i].title%></h5>
-              <%if(ext[i] == '.mkv' || ext[i] == '.mp4' || ext[i] == '.webm'){ %>
+              <% if(ext[i] == '.mkv' || ext[i] == '.mp4' || ext[i] == '.webm'){ %>
                 <video
                 id="demo-player"
                 controls
@@ -22,7 +22,7 @@
                 
                 <source src="<%= posts[i].media%>" type="video/mp4" class="card-img-top" alt="<%= posts[i].title%>" />
                 </video>
-                <%}else {%>
+                <%} else {%>
                   <img class="img-fluid" width="800" height="800" src="<%= posts[i].media%>" />
                 <%}%>
               <!-- <img class="img-fluid" src="<%= posts[i].media%>"> -->
