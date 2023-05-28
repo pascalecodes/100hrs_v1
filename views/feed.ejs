@@ -24,8 +24,10 @@
                 <%}else {%>
                   <img class="img-fluid" width="800" height="900" src="<%= posts[i].media%>" />
                 <%}%>
-              <h5><%= posts[i].user.userName%></h5>
-              <h5>Likes: <%= posts[i].likes %></h5>
+              <div class="d-flex align-items-center justify-content-between"> 
+                <h5 class="d-flex  justify-content-start" >By: <%= posts[i].user.userName%></h5>
+                <h5 class="d-flex  justify-content-end">Likes: <%= posts[i].likes %></h5>
+              </div>
           </li>
         <% } %>
         </ul>
