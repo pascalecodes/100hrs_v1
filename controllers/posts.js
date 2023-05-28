@@ -118,18 +118,23 @@ module.exports = {
       const posts = await Post.find().sort({ createdAt: "desc" }).populate('user');
       const ext= posts.map(post=> path.extname(post.media))
       //console.log(posts.user.userName)
-
-      //group posts by username
+    
+      //group posts by username but not using it to render right now
       const groupPosts = posts.reduce((acc, post) => {
         if (!acc[post.user.userName]) {
-          acc[post.user.userName] = [];
+          acc[post.user.userName] = []
         }
-        acc[post.user.userName].push(post);
+        //acc[post.user.userName].push(post);
+        acc[post.user.userName].push({
+          ...post,
+          ext: path.extname(post.media)
+        });
         return acc;
       }, {});
-      
+
       //console.log(groupPosts);
-      
+      console.log(posts)
+      //res.render("feed.ejs", { posts: posts,  user: req.user, ext: ext}); 
       res.render("feed.ejs", { posts: posts,  user: req.user, ext: ext, groupPosts: groupPosts});
     } catch (err) {
       console.log(err);
