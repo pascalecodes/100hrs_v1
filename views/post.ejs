@@ -35,8 +35,7 @@
         <%}%>
 
       <div class="row justify-content-between">
-        <form
-          class="col-1"
+        <form          
           action="/post/likePost/<%= post.id %>?_method=PUT"
           method="POST"
         >
@@ -49,13 +48,13 @@
         
         
         <%if(post.user.userName == user.userName){ %>
-        <!-- <form
+        <form
           action="/post/deletePost/<%= post.id %>?_method=DELETE"
           method="POST"
           
         >
           <button class="btn btn-outline-danger fa fa-trash" type="submit"> Delete Post</button>
-        </form> -->
+        </form>
         <%}%>
       </div>
     </div> 
