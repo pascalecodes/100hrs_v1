@@ -142,7 +142,7 @@ module.exports = {
       // const comments = await Comment.find(post+req.params.id).sort({ createdAt: "desc" }).lean();
       //const users = await User.findById(req.params._id)
     //   const userName = await User.find({_id: req.params.userName})
-    console.log(post)
+    //console.log(post)
       const ext= path.extname(post.media)
     
       const comments = await Comment.find({post: req.params.id}).sort({ createdAt: "desc" }).lean();
@@ -224,14 +224,17 @@ module.exports = {
       // Delete post from db
       await Post.deleteOne({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/profile");
+      //res.redirect("/profile");
       // Delete comment from db
-      await Comment.deleteOne({ post: req.params.id });
+      await Comment.deleteMany({ post: req.params.id });
+      // _id: req.params.commentid
       console.log("Deleted Comment");
-      res.redirect("/profile");
+      //res.redirect("/profile");
     } catch (err) {
       res.redirect("/profile");
     }
+    //Redirect back to profile page
+    res.redirect("/profile");
   },
  
 };
